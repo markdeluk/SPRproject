@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">SPR_project</string>
-    <string name="title_activity_main">SPR_project</string>
-    <string name="package_name">com.spr_project.app</string>
-    <string name="custom_url_scheme">com.spr_project.app</string>
-</resources>

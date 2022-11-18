@@ -1,0 +1,11 @@
+{
+  "appId": "com.spr_project.app",
+  "appName": "SPR_project",
+  "bundledWebRuntime": false,
+  "webDir": "src",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  }
+}

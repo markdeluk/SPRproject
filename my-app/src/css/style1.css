@@ -1,0 +1,94 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+#map {
+    height:100vh;
+    width: 100%;
+    position: relative;
+}
+
+
+.formBlock {
+    max-width: 300px;
+    background-color: #FFF;
+    border: 1px solid #ddd;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 10px;
+    z-index: 999;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+    border-radius: 5px;
+    width: 100%;
+}
+
+.leaflet-top .leaflet-control {
+    margin-top: 180px;
+}
+
+
+.searchBar {
+    display: flex;
+    max-width: 90%;
+    height: 4%;
+    width: 90%;
+    border-radius: 59.5px;
+    border-color: rgba(0, 0, 0, 1);
+    border-width: 2px;
+    border-style: solid;
+    background-color: rgba(255, 255, 255, 1);
+    top:2%;
+    position:absolute;
+    left:5%;
+    z-index:2;
+  }
+  .bikeOption{
+    display: block;
+  }
+  .results {
+    display: flex;
+    max-width: 90%;
+    height: 40%;
+    width: 90%;
+    border-radius: 59.5px;
+    border-color: rgba(0, 0, 0, 1);
+    border-width: 2px;
+    border-style: solid;
+    background-color: rgba(255, 255, 255, 1);
+    top:50%;
+    position:absolute;
+    overflow: hidden;
+    visibility: hidden;
+    left:5%;
+    z-index:2;
+  }
+  .resultsTable{
+    height: 100%;
+    width:100%;
+    overflow-y: scroll;
+    z-index:1;
+  }
+  .searchButton{
+    z-index:2;
+    border-color: rgb(255, 255, 255);
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border:none;
+    background: url("./imgs/searchBar_lens.png") no-repeat scroll 0 0 transparent;
+    background-size: 1.8%;
+    top: 5%;
+    position: absolute;
+
+    left: 1%;
+    }
+    .SearchInput{
+        height: 98%;
+        width: 90%;
+        outline: none;
+        border:none;
+    position:absolute;
+    left:5%;
+    z-index:3;
+    }

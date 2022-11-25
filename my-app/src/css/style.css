@@ -1,5 +1,122 @@
-html,
-body {
-  padding: 0;
+html, body {
+  height: 100%;
   margin: 0;
 }
+
+#map {
+  height:100vh;
+  width: 100%;
+  position: relative;
+}
+
+.leaflet-top .leaflet-control {
+  margin-top: 180px;
+}
+
+.searchBar {
+  display: flex;
+  max-width: 90%;
+  height: 4%;
+  width: 90%;
+  border-radius: 59.5px;
+  border-color: rgba(0, 0, 0, 1);
+  border-width: 2px;
+  border-style: solid;
+  background-color: rgba(255, 255, 255, 1);
+  top:2%;
+  position:absolute;
+  left:5%;
+  z-index:2;
+}
+
+.bikeOption{
+  display: block;
+}
+
+.results {
+  display: flex;
+  max-width: 90%;
+  height: 60%;
+  width: 90%;
+  border-radius: 59.5px;
+  border-color: rgba(0, 0, 0, 1);
+  border-width: 2px;
+  border-style: solid;
+  background-color: rgba(255, 255, 255, 1);
+  top:35%;
+  position:absolute;
+  overflow: hidden;
+  visibility: hidden;
+  left:5%;
+  z-index:2;
+}
+
+.resultsTable{
+  height: 100%;
+  width:100%;
+  overflow-y: scroll;
+  z-index:1;
+}
+.StyleTable{
+  width: 100%;
+  height:100%;
+}
+.bookButtonStyle{
+  width: 100%;
+  height:100%;
+}
+.searchButton{
+  z-index:2;
+  border-color: rgb(255, 255, 255);
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border:none;
+  background: url("./imgs/searchBar_lens.png") no-repeat scroll 0 0 transparent;
+  background-size: 1.8%;
+  top: 5%;
+  position: absolute;
+
+  left: 1%;
+  }
+  .SearchInput{
+      height: 98%;
+      width: 90%;
+      outline: none;
+      border:none;
+  position:absolute;
+  left:5%;
+  z-index:3;
+  }
+      .bikePicture { grid-area: Picture; }
+      .bookButton { grid-area: button; }
+      .bikePosition { grid-area: position; }
+      .bikeName { grid-area: name; }
+      .bikeModel { grid-area: model; }
+      
+      .grid-container {
+        display: grid;
+        grid-template-areas:
+          'name name name  button'
+          'position position position button'
+          'model model model button'
+          'Picture Picture Picture Picture';
+        grid-auto-columns: 1fr; 
+        grid-template-columns: 0.25fr 0.25fr 0.25fr  0.25fr; 
+        grid-template-rows: 0.05fr 0.05fr 0.05fr 0.70fr; 
+        gap: 0px 0px; 
+        background-color: #e44747;
+        padding: 1px;
+      }
+      
+
+
+
+      
+      .grid-container > div {
+        background-color: rgba(255, 255, 255, 0.8);
+        text-align: center;
+        grid-template-columns: 200px 200px 200px;
+        padding: 1px 0;
+        font-size: 30px;
+      }

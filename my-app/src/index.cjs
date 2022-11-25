@@ -66,50 +66,25 @@ let map = L.map('map', {
         })); 
     }
 //function that load images and related data inside the result table
-function loadData(ResultTable){
-    //load test image 
-    var img = document.getElementById('testImage');
-    var image = new Image();
-    var image1 = new Image();
-    
-    
-    
-    image.src = 'data:image/png;base64,'+base64String;
-    image1.src=image.src;
-    var imageArray=[image,image1];
-    if(ResultTable.rows.length>0)
-        for (var i=0;i<imageArray.length;i++){
-        ResultTable.deleteRow(ResultTable.rows.length);
-        }
-    for (var i=0;i<imageArray.length;i++){
-        var row = ResultTable.insertRow(i);
-        var cell = row.insertCell(0);
-        cell.appendChild(imageArray[i]);
-    }
-    console.log(ResultTable.rows.length);
-    
-
-}
 
 // function that runs when form submitted
 function submitForm(event) {
     event.preventDefault();
 
     // delete current map layer
-    map.remove();
+   // map.remove();
 
     // getting form data
-    //start = document.getElementById("start").value;
     start="Horsens";
     end = document.getElementById("destination").value;
     //request bikes nearby your position, for now it's only the same city
-    socket.emit("getBikes",start);
+    socket.emit("getBikes",end);
     var ResultTableContainer= document.getElementById("ResultTableContainer");
     ResultTableContainer.style.visibility='visible';
     var ResultTable= document.getElementById("nearBikeResultTable");
    // loadData(ResultTable);
     // run directions function
-    runDirection(start, end);
+    //runDirection(start, end);
 
     // reset form
     document.getElementById("form").reset();

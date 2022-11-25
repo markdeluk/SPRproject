@@ -1,7 +1,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
-        <link rel="stylesheet" href="css/style1.css">
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body style='border:0; margin: 0'>
         <div id='map'></div>
@@ -13,7 +13,7 @@
         </div>
 		<div class="results" id="ResultTableContainer">
             <div class="ResultsTable">
-                <table id="nearBikeResultTable"  cellspacing="0" cellpadding="0">
+                <table id="nearBikeResultTable" class="StyleTable" cellspacing="0" cellpadding="0">
 				</table>
             </div>
 		</div>
@@ -26,28 +26,91 @@
 
         <script>
 
-            const socket = io("http://10.21.11.214:4000", {
+           
+           const socket = io("http://10.21.11.214:4000", {
                 withCredentials: true
                 });
+
+                
+                // creating table for results
                 var ResultTable= document.getElementById("nearBikeResultTable");
+
+                // listener
                 socket.on('sendBikesResult', (msg) => {
-                    //console.log('message: ' + msg[0]['ID']+msg[0]['img_src']);
                     var enc = new TextDecoder("utf-8");
-                    //console.log(msg.length);
-                    //create data block for each bike
+
+                    var ResultTableContainer= document.getElementById("ResultTableContainer");
+                    ResultTableContainer.style.visibility='visible';
+
+                    //create bike container block for each bike
                     for (var i=0;i<msg.length;i++){
-                        var image= new Image();
-                        //decode image and put it as source
-                        image.src = 'data:image/png;base64,'+enc.decode(msg[i]['img_src']);
-                        image.style.height="50%";
-                        image.style.width="50%";
-                        //insert in result table
+
+                        // creating a table entry
                         var row = ResultTable.insertRow(i);
                         var cell = row.insertCell(0);
-                        cell.appendChild(image);
+                        //cell.style.height ='1%';
+
+                        // creating image
+                        var image= new Image();
+                        image.src = 'data:image/png;base64,'+enc.decode(msg[i]['img_src']);
+                        image.style.height="100%";
+                        image.style.width="30%";
+
+                        // Create bike container
+                        var divContainer= document.createElement("div");
+                        divContainer.classList.add("grid-container");
+
+                        // create elements
+                        var divModel=document.createElement("div");
+                        var divPosition=document.createElement("div");
+                        var divName=document.createElement("div");
+                        var divButton=document.createElement("div");
+                        var divPicture=document.createElement("div");
+
+                        //appendText from imcoming message
+                        var name = document.createElement('label');
+                        name.innerHTML =  msg[i]['name'];
+                        divName.appendChild(name);
+                        
+                        var model = document.createElement('label');
+                        model.innerHTML =  msg[i]['model'];
+                        divModel.appendChild(model); 
+                        
+                        var bikePosition = document.createElement('label');
+                        bikePosition.innerHTML =  msg[i]['coordinates'];
+                        divPosition.appendChild(bikePosition);
+
+                        var bookButton = document.createElement("button");
+                        bookButton.classList.add("bookButtonStyle");
+                        bookButton.innerHTML = "Book";
+                        divButton.appendChild(bookButton);
+                        
+
+                        // style arrangement
+                        divModel.classList.add("bikeModel");
+                        divPosition.classList.add("bikePosition");
+                        divName.classList.add("bikeName");
+                        divButton.classList.add("bookButton");
+                        divPicture.classList.add("bikePicture");
+                        
+                        // inserting picture
+                        divPicture.appendChild(image);
+                        
+
+                        // inserting divs in container
+                        divContainer.appendChild(divModel);
+                        divContainer.appendChild(divPicture);
+                        divContainer.appendChild(divButton);
+                        divContainer.appendChild(divPosition);
+                        divContainer.appendChild(divName);
+                        
+                        //insert in result table
+                        cell.appendChild(divContainer);
+
+                        
+
                     }
                 });
-            socket.emit("TEST","ciao da applicazione android!");
 
         </script>
     </body>

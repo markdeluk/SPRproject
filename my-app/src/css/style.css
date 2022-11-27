@@ -23,6 +23,7 @@ html, body {
   border-width: 2px;
   border-style: solid;
   background-color: rgba(255, 255, 255, 1);
+  visibility: visible;
   top:2%;
   position:absolute;
   left:5%;
@@ -51,7 +52,28 @@ html, body {
   z-index:2;
 }
 
-.resultsTable{
+.bookInfo {
+  display: flex;
+  max-width: 90%;
+  height: 60%;
+  width: 90%;
+  border-radius: 59.5px;
+  border-color: rgba(0, 0, 0, 1);
+  border-width: 2px;
+  border-style: solid;
+  background-color: rgba(255, 255, 255, 1);
+  top:35%;
+  position:absolute;
+  overflow: hidden;
+  visibility: hidden;
+  left:5%;
+  z-index:1;
+}
+
+
+
+
+.ResultsTable{
   height: 100%;
   width:100%;
   overflow-y: scroll;
@@ -60,7 +82,20 @@ html, body {
 .StyleTable{
   width: 100%;
   height:100%;
+  z-index:1;
+  overflow-y: scroll;
+  position:absolute;
 }
+
+.StyleInfoTable{
+  width: 100%;
+  height:100%;
+  z-index:1;
+  overflow-y: scroll;
+  position:absolute;
+}
+
+
 .bookButtonStyle{
   width: 100%;
   height:100%;
@@ -102,6 +137,8 @@ html, body {
           'model model model button'
           'Picture Picture Picture Picture';
         grid-auto-columns: 1fr; 
+        width: 100%;
+        height: 100%;
         grid-template-columns: 0.25fr 0.25fr 0.25fr  0.25fr; 
         grid-template-rows: 0.05fr 0.05fr 0.05fr 0.70fr; 
         gap: 0px 0px; 
@@ -116,7 +153,60 @@ html, body {
       .grid-container > div {
         background-color: rgba(255, 255, 255, 0.8);
         text-align: center;
-        grid-template-columns: 200px 200px 200px;
         padding: 1px 0;
         font-size: 30px;
       }
+
+/* 
+STYLE FOR MORE INFO ABOUT A SPECIFIC BIKE
+
+*/
+.MoreInfoBikeContainer {  
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  width: 100%;
+  height: 100%;
+  grid-template-rows: 0.05fr 0.1fr 0.7fr 0.05fr  0.05fr 0.05fr 0.10fr ;
+  grid-auto-columns: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "NAME NAME NAME PRICE PRICE SHARE"
+    "DESCRIPTION DESCRIPTION DESCRIPTION PRICE PRICE SHARE"
+    "PICTURE PICTURE PICTURE PICTURE PICTURE PICTURE"
+    "TIME TIME TIME TIME TIME TIME"
+    "ADDRESS ADDRESS ADDRESS ADDRESS ADDRESS ADDRESS"
+    "MORE-INFO-BUTTON MORE-INFO-BUTTON MORE-INFO-BUTTON MORE-INFO-BUTTON MORE-INFO-BUTTON MORE-INFO-BUTTON"
+    "BOOK-NOW BOOK-NOW BOOK-NOW RESERVE RESERVE RESERVE";
+    gap: 0px 0px; 
+        background-color: #e44747;
+        padding: 1px;
+}
+.MoreInfoBikeContainer > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 1px 0;
+  font-size: 30px;
+}
+
+.ShareButton_MoreInfo { grid-area: SHARE; }
+
+.BikeName_MoreInfo { grid-area: NAME; }
+
+.BikeDescription_MoreInfo { grid-area: DESCRIPTION; }
+
+.BikePrice_MoreInfo { grid-area: PRICE; }
+
+.BikePicture_MoreInfo { grid-area: PICTURE; }
+
+.Time_MoreInfo { grid-area: TIME; }
+.Address_MoreInfo {grid-area: ADDRESS;}
+
+.MoreInfoButton_MoreInfo{ grid-area: MORE-INFO-BUTTON; }
+
+.BookButton_MoreInfo{ grid-area: BOOK-NOW; }
+
+.ReserverButton_MoreInfo { grid-area: RESERVE; }
+
+
+    

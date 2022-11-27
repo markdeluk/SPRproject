@@ -5,7 +5,7 @@
     </head>
     <body style='border:0; margin: 0'>
         <div id='map'></div>
-        <div class="searchBar">
+        <div class="searchBar" id = "searchBar">
             <form id="form">
                 <input type="text" name="end" class="SearchInput" id="destination" placeholder="Choose ending point" />
                 <button class="searchButton" type="submit"></button>
@@ -17,6 +17,14 @@
 				</table>
             </div>
 		</div>
+        <div class="bookInfo" id="InfoTableContainer">
+            <div class="MoreInfoTable">
+                <table id="InfoTable" class="StyleInfoTable" cellspacing="0" cellpadding="0">
+				</table>
+            </div>
+		</div>
+
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
         <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-map.js?key=S8d7L47mdyAG5nHG09dUnSPJjreUVPeC"></script>
         <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-routing.js?key=S8d7L47mdyAG5nHG09dUnSPJjreUVPeC"></script>
@@ -26,7 +34,7 @@
 
         <script>
 
-           
+            //const socket = io("http://10.154.206.37:4000", {
            const socket = io("http://10.21.11.214:4000", {
                 withCredentials: true
                 });
@@ -34,13 +42,19 @@
                 
                 // creating table for results
                 var ResultTable= document.getElementById("nearBikeResultTable");
-
+                var searchBar = document.getElementById("searchBar");
+                //create frame on which i have more data about the bike
+                var MoreinfoTable= document.getElementById("InfoTable");
                 // listener
                 socket.on('sendBikesResult', (msg) => {
-                    var enc = new TextDecoder("utf-8");
-
+                        var enc = new TextDecoder("utf-8");
+                    ////here
                     var ResultTableContainer= document.getElementById("ResultTableContainer");
+                    var InfoTableContainer= document.getElementById("InfoTableContainer");
                     ResultTableContainer.style.visibility='visible';
+                    searchBar.style.visibility='hidden';
+                    //ResultTableContainer.style.visibility='hidden';
+
 
                     //create bike container block for each bike
                     for (var i=0;i<msg.length;i++){
@@ -82,6 +96,11 @@
 
                         var bookButton = document.createElement("button");
                         bookButton.classList.add("bookButtonStyle");
+                        bookButton.id=i;
+                        console.log("before");
+                        console.log(msg);
+                        bookButton.addEventListener("click",function(){loadBikeSpecificInfo(msg,this.id)}); 
+                        
                         bookButton.innerHTML = "Book";
                         divButton.appendChild(bookButton);
                         
@@ -111,6 +130,143 @@
 
                     }
                 });
+                //function to load Table for specific info about a certain bike
+                function loadBikeSpecificInfo(msg,ID){
+
+                    InfoTableContainer.style.visibility='visible';
+                    ResultTableContainer.style.visibility='hidden';
+                    var rowInfoTable = InfoTable.insertRow(0);
+                    var cellInfoTable = rowInfoTable.insertCell(0);
+                    var divContainer= document.createElement("div");
+                        divContainer.classList.add("MoreInfoBikeContainer");
+                    
+                    //variables used to parse the JSON
+                    var PriceString = "10";
+                    var DescriptionString = "ModelName" + "\n" + "TypeName";
+                    var TimeString = "3 minutes";
+                    var AddressString = "Kamtjatka 13";
+
+
+
+
+                    //image
+                    var enc = new TextDecoder("utf-8");
+                    var image= new Image();
+                        image.src = 'data:image/png;base64,'+enc.decode(msg[ID]['img_src']);
+                        image.style.height="100%";
+                        image.style.width="100%";
+                    var divPicture=document.createElement("div");
+                    divPicture.classList.add("BikePicture_MoreInfo");
+                    divPicture.appendChild(image);
+                    divContainer.appendChild(divPicture);
+
+                    //name
+                    var divName=document.createElement("div");
+                    var name = document.createElement('label');
+                    name.innerHTML =  msg[ID]['name'];
+                    divName.appendChild(name);
+                    divName.classList.add("BikeName_MoreInfo");
+                    divContainer.appendChild(divName);
+
+                    //price
+                    var divPrice = document.createElement("div");
+                    var Price = document.createElement('label');
+                    Price.innerHTML= PriceString + "DKK";
+                    divPrice.appendChild(Price);
+                    divPrice.classList.add("BikePrice_MoreInfo");
+                    divContainer.appendChild(divPrice);
+
+                    //description
+
+                    var divDescription = document.createElement("div");
+                    var description = document.createElement('label');
+                    description.innerHTML = DescriptionString;
+                    divDescription.appendChild(description);
+                    divDescription.classList.add("BikeDescription_MoreInfo");
+                    divContainer.appendChild(divDescription);
+
+                    //share button
+                    var divShareButton = document.createElement("div");
+                    var ShareButton = document.createElement("button");
+                    ShareButton.classList.add("ShareButtonStyle"); //TODO: add style in CSS with the image
+                    ShareButton.addEventListener("click", function(){shareOutsideApp()}); //TODO: implement function
+                    divShareButton.classList.add("ShareButton_MoreInfo");
+                    divShareButton.appendChild(ShareButton);
+                    divContainer.appendChild(divShareButton);
+
+                    //time
+                    var divTime = document.createElement("div");
+                    var time = document.createElement('label');
+                    time.innerHTML= TimeString;
+                    divTime.appendChild(time);
+                    divTime.classList.add("Time_MoreInfo");
+                    divContainer.appendChild(divTime);
+
+                    //address
+
+                    var divAddress = document.createElement("div");
+                    var address = document.createElement('label');
+                    address.innerHTML = AddressString;
+                    divAddress.appendChild(address);
+                    divAddress.classList.add("Address_MoreInfo");
+                    divContainer.appendChild(divAddress);
+
+                    //scroll down button
+                    
+                    var divScrollButton = document.createElement("div");
+                    var ScrollButton = document.createElement("button");
+                    ScrollButton.innerHTML="Press for more info"
+                    ScrollButton.classList.add("ScrollButtonStyle"); //TODO: add style in CSS with the image
+                    ScrollButton.addEventListener("click", function(){showMoreInfo()}); //TODO: implement function, maybe some blocks of the grid are hidden?
+                    divScrollButton.classList.add("MoreInfoButton_MoreInfo");
+                    divScrollButton.appendChild(ScrollButton);
+                    divContainer.appendChild(divScrollButton);
+
+                    //book now
+
+                    var divBookButton = document.createElement("div");
+                    var BookButton = document.createElement("button");
+                    BookButton.innerHTML="Book"
+                    BookButton.classList.add("BookButtonStyle"); //TODO: add style in CSS with the image
+                    BookButton.addEventListener("click", function(){BookPage()}); //TODO: implement function,
+                    divBookButton.appendChild(BookButton);
+                    divBookButton.classList.add("BookButton_MoreInfo");
+                    divContainer.appendChild(divBookButton);
+
+                    //reserve
+
+                    var divReserveButton = document.createElement("div");
+                    var ReserveButton = document.createElement("button");
+                    ReserveButton.innerHTML="Reserve for later"
+                    ReserveButton.classList.add("ReserveButtonStyle"); //TODO: add style in CSS with the image
+                    ReserveButton.addEventListener("click", function(){ReservePage()}); //TODO: implement function, maybe some blocks of the grid are hidden?
+                    divReserveButton.classList.add("ReserveButton_MoreInfo");
+                    divReserveButton.appendChild(ReserveButton);
+                    divContainer.appendChild(divReserveButton);
+
+                        //attach back button
+                        //var divButton=document.createElement("div");
+                       // var backButton = document.createElement("button");
+                       // backButton.classList.add("bookButtonStyle");
+                        //backButton.innerHTML="Back"
+                        //backButton.addEventListener("click",function(){backToMainTable()}); 
+                        //divButton.appendChild(backButton);
+                       // divContainer.appendChild(divButton);
+                          
+
+                        cellInfoTable.appendChild(divContainer);
+                        cellInfoTable.style.height = "100%";
+                        cellInfoTable.style.width = "100%";
+                }
+                //function to come back to main table
+                function backToMainTable(){
+                    var MoreinfoTable= document.getElementById("InfoTable");
+                    InfoTableContainer.style.visibility='hidden';
+                    ResultTableContainer.style.visibility='visible';
+                    for (var i = 0;i < MoreinfoTable.rows.length;i++){
+                        MoreinfoTable.deleteRow(i);
+                    }
+                }
 
         </script>
     </body>

@@ -7,6 +7,7 @@ const server = http.createServer(app);
 var mysql = require('mysql');
 //instantiate database connection
 var con = mysql.createConnection({
+//host: "10.154.206.37",
 host: "10.21.11.214",
 user: "marco",
 password: "marcolino2002",

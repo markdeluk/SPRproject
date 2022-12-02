@@ -167,7 +167,6 @@ STYLE FOR MORE INFO ABOUT A SPECIFIC BIKE
   width: 100%;
   height: 100%;
   grid-template-rows: 0.05fr 0.1fr 0.7fr 0.05fr  0.05fr 0.05fr 0.10fr ;
-  grid-auto-columns: 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
@@ -176,8 +175,8 @@ STYLE FOR MORE INFO ABOUT A SPECIFIC BIKE
     "PICTURE PICTURE PICTURE PICTURE PICTURE PICTURE"
     "TIME TIME TIME TIME TIME TIME"
     "ADDRESS ADDRESS ADDRESS ADDRESS ADDRESS ADDRESS"
-    "MORE-INFO-BUTTON MORE-INFO-BUTTON MORE-INFO-BUTTON MORE-INFO-BUTTON MORE-INFO-BUTTON MORE-INFO-BUTTON"
-    "BOOK-NOW BOOK-NOW BOOK-NOW RESERVE RESERVE RESERVE";
+    "RESERVE RESERVE RESERVE BOOK-NOW BOOK-NOW BOOK-NOW "
+    "MORE-INFO-BUTTON MORE-INFO-BUTTON MORE-INFO-BUTTON MORE-INFO-BUTTON MORE-INFO-BUTTON MORE-INFO-BUTTON";
     gap: 0px 0px; 
         background-color: #e44747;
         padding: 1px;
@@ -198,6 +197,7 @@ STYLE FOR MORE INFO ABOUT A SPECIFIC BIKE
 .BikePrice_MoreInfo { grid-area: PRICE; }
 
 .BikePicture_MoreInfo { grid-area: PICTURE; }
+.EMPTY{grid-area: EMPTY;}
 
 .Time_MoreInfo { grid-area: TIME; }
 .Address_MoreInfo {grid-area: ADDRESS;}
@@ -206,7 +206,7 @@ STYLE FOR MORE INFO ABOUT A SPECIFIC BIKE
 
 .BookButton_MoreInfo{ grid-area: BOOK-NOW; }
 
-.ReserverButton_MoreInfo { grid-area: RESERVE; }
+.ReserveButton_MoreInfo { grid-area: RESERVE;width: 100%; height: 100%;}
 
 
     

@@ -7,8 +7,8 @@ const server = http.createServer(app);
 var mysql = require('mysql');
 //instantiate database connection
 var con = mysql.createConnection({
-//host: "10.154.206.37",
-host: "10.21.11.214",
+host: "LAPTOP-7M6U6UFG",
+//host: "10.21.11.214",
 user: "marco",
 password: "marcolino2002",
 database: "spr"
@@ -25,7 +25,9 @@ const io = require("socket.io")(server, {
 
 //application connected to the server
 io.on('connection', (socket) => {
-    console.log('a user connected');
+  var socketId = socket.id;
+  var clientIp = socket.request.connection.remoteAddress;
+  console.log("connection from "+ socketId +" "+clientIp)
     socket.on('getBikes', (msg) => {
         //console.log('message: ' + msg);
         ///connect to the database and retrieve the wanted image
@@ -73,11 +75,13 @@ function base64_encode(file) {
         ownerID=000
         city="horsens"
         var sql = "INSERT INTO bikesinfo (ID, name,img_src, model, coordinates, dimension, wheel, damage,ownerID,city) VALUES (?,?,?,?,?,?,?,?,?,?)";
-          con.query(sql,[id,name,Base64,model,coordinates,dimension,wheel,damage,ownerID,city],function (err, result) {
+          /*
+        con.query(sql,[id,name,Base64,model,coordinates,dimension,wheel,damage,ownerID,city],function (err, result) {
 
             if (err) throw err;
             console.log("1 record inserted");
           });
+*/
         });
     })
     

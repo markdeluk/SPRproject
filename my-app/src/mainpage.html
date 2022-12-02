@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body style='border:0; margin: 0'>
+        <div id='map'></div>
+        <div class="searchBar" id = "searchBar">
+            <form id="form">
+                <input type="text" name="end" class="SearchInput" id="destination" placeholder="Choose ending point" />
+                <button class="searchButton" type="submit"></button>
+            </form>
+        </div>
+		<div class="results" id="ResultTableContainer">
+            <div class="ResultsTable">
+                <table id="nearBikeResultTable" class="StyleTable" cellspacing="0" cellpadding="0">
+				</table>
+            </div>
+		</div>
+        <div class="bookInfo" id="InfoTableContainer">
+            <div class="MoreInfoTable">
+                <table id="InfoTable" class="StyleInfoTable" cellspacing="0" cellpadding="0">
+				</table>
+            </div>
+		</div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+        <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-map.js?key=AuNooZItAA8tywWGajwtwAzbZaq7Nxkc"></script>
+        <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-routing.js?key=AuNooZItAA8tywWGajwtwAzbZaq7Nxkc"></script>
+        <script src="https://cdn.socket.io/4.5.3/socket.io.min.js" integrity="sha384-WPFUvHkB1aHA5TDSZi6xtDgkF0wXJcIIxXhC6h8OT8EH3fC5PWro5pWJ1THjcfEi" crossorigin="anonymous"></script>
+        <script src="js/mainpage.cjs"></script>
+        <script src="js/bundle.js"></script>
+
+        <script>
+
+
+
+                
+              
+
+        </script>
+    </body>
+</html>

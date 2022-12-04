@@ -1,22 +1,98 @@
 <html>
-<h1>Hello, <%= bikename %> <%= bikeaddress %> <%= bikeprice %> <%= bikedescription %></h1>
-</html>
-
-<!DOCTYPE html>
-<html>
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Book your bike</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='css/bookPage.css'>
-    <script src="https://cdn.socket.io/4.5.3/socket.io.min.js" integrity="sha384-WPFUvHkB1aHA5TDSZi6xtDgkF0wXJcIIxXhC6h8OT8EH3fC5PWro5pWJ1THjcfEi" crossorigin="anonymous"></script>
 </head>
 <body>
-    <h1>Book Page!</h1>
-    <h2></h2>
-    <div>
-        <img src='<%= bikeimg %>' />
-    </div>
+    <div class="container">
+        <div class="Front">
+
+            <div class="backButton">
+                <button class="backB"></button>
+            </div>
+            <div class="GoBackLabel">
+                <div class="Title">Go Back</div>
+            </div>
+            <div>
+                <div class="Title">Booking Summary</div>
+                <div class="Text">Review your booking before paying</div>
+            </div>
+        </div>
+        <div class="BikeInformationLabel">
+            <div class="Title"> Bike Information</div>
+            <div class="Text"> Name <%= bikename %> </div>
+            <div class="Text">Type, Model <%= bikedescription %> </div>
+            <div class="Text"> Address <%= bikeaddress %> </div>
+        </div>
+        <div class="Picture">
+            <img src='<%= bikeimg %>' width="100%" height="100%" />
+        </div>
+        <div class="DurationLabel">
+            <div class="Title"> Duration of the Rental</div>
+            <div class="OptionMenu">
+                <div class="optionFrame" name="day" id ="dayOption">
+                    <div class="selectTime">
+                        <button class="selectedOption" name="day" id="daySelection"></button>
+                        <div>1 Day</div>
+                    </div>
+                    <div class="selectAmount">
+                        <button class="plusButton" name="day" id="plusButton">+</button>
+                        <button class="minusButton" name="day" id="minusButton">-</button>
+                    </div>
+
+                </div>
+                <div class="optionFrame" name="week" id ="weekOption">
+                    <div class="selectTime">
+                        <button class="selectedOption" name="week" id="weekSelection"></button>
+                        <div>1 Week</div>
+                    </div>
+                    <div class="selectAmount">
+                        <button class="plusButton" name = "week" id="plusButton">+</button>
+                        <button class="minusButton" name="week" id="minusButton">-</button>
+                    </div>
+                </div>
+                <div class="optionFrame" name="month" id = "monthOption">
+                    <div class="selectTime">
+                        <button class="selectedOption" name="month" id ="monthSelection" ></button>
+                        <div>1 Month</div>
+                    </div>
+                    <div class="selectAmount">
+                        <button class="plusButton" name="month" id="plusButton">+</button>
+                        <button class="minusButton" name="month" id="minusButton">-</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="CostLabel">
+            <div class="Title">Costs</div>
+            <div class = "CostDetailLabel">
+                <div class="Text">Bike Rental </div>
+                <div class="Text" id = "BikeRentalLabel"></div>
+                <div class="Text" id = "AmountDetailLabel"></div>
+            </div>
+            <div class = "CostDetailLabel">
+                <div class="Text">Reservation</div>
+                <div class="Text"></div>
+            </div>
+            <div class = "CostDetailLabel">
+                <div class="Text">Additional Costs</div>
+                <div class="Text"></div>
+            </div>
+            <div class = "CostDetailLabel">
+                <div class="Text">Taxes</div>
+                <div class="Text"></div>
+            </div>
+            
+        </div>
+        <div class="TotalCost">
+            <div class="Title">Total Cost</div>
+        </div>
+        <div class="PrivacyLabel">
+            <div class="Text">By paying, you accept our Term of Service. <br>
+                See our Privacy Policy for more details </div>
+        </div>
+        <div class="PaymentMethod"></div>
+      </div>
+      <script src="https://cdn.socket.io/4.5.3/socket.io.min.js" integrity="sha384-WPFUvHkB1aHA5TDSZi6xtDgkF0wXJcIIxXhC6h8OT8EH3fC5PWro5pWJ1THjcfEi" crossorigin="anonymous"></script>
+      <script src='js/bookPage.js'></script>
 </body>
 </html>

@@ -406,11 +406,13 @@ form.addEventListener('submit', submitForm);
     inputBikeImg.setAttribute('name','bikeImg');
     //convert img src to canvas and then convert to base64
     var c=document.createElement('canvas')
-    c.width=bikeImg.firstChild.width;
-    c.height=bikeImg.firstChild.height;
+    //c.width=bikeImg.firstChild.width;
+    //c.height=bikeImg.firstChild.height;
     var ctx=c.getContext("2d");
     var img= new Image();
     img.src = bikeImg.firstChild.src;
+    c.width=img.width;
+    c.height=img.height;
     ctx.drawImage(img,0,0);
     var base64 = c.toDataURL();
     console.log(base64);

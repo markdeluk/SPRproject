@@ -59,3 +59,34 @@ app.post('/book', function(request, response) {
     response.render("bookPage",{bikename:bikeName,bikedescription:bikeDescription,bikeaddress:bikeAddress,bikeprice:bikePrice,bikeimg:bikeImg});
     //res.sendFile(path.join(__dirname+'/book.html'));
 });
+
+app.post('/Paypal', function(request, response) {
+    var TotalAmount = request.body['TotalAmount'];
+    var Currency = request.body['Currency'];
+    response.render("PayPal",{totalamount:TotalAmount,currency:Currency});
+});
+app.post('/Visa', function(request, response) {
+    var TotalAmount = request.body['TotalAmount'];
+    var Currency = request.body['Currency'];
+    response.render("Visa",{totalamount:TotalAmount,currency:Currency});
+});
+app.post('/GooglePay', function(request, response) {
+    var TotalAmount = request.body['TotalAmount'];
+    var Currency = request.body['Currency'];
+    response.render("GooglePay",{totalamount:TotalAmount,currency:Currency});
+});
+app.post('/MasterCard', function(request, response) {
+    var TotalAmount = request.body['TotalAmount'];
+    var Currency = request.body['Currency'];
+    response.render("MasterCard",{totalamount:TotalAmount,currency:Currency});
+});
+app.post('/ApplePay', function(request, response) {
+    var TotalAmount = request.body['TotalAmount'];
+    var Currency = request.body['Currency'];
+    response.render("ApplePay",{totalamount:TotalAmount,currency:Currency});
+});
+app.post('/MobilePay', function(request, response) {
+    var TotalAmount = request.body['TotalAmount'];
+    var Currency = request.body['Currency'];
+    response.render("MobilePay",{totalamount:TotalAmount,currency:Currency});
+});

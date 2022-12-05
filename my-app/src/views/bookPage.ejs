@@ -65,32 +65,67 @@
         <div class="CostLabel">
             <div class="Title">Costs</div>
             <div class = "CostDetailLabel">
+                <div>
+                    <img src="css/imgs/bikeIcon.png">
+                </div>
                 <div class="Text">Bike Rental </div>
                 <div class="Text" id = "BikeRentalLabel"></div>
                 <div class="Text" id = "AmountDetailLabel"></div>
             </div>
             <div class = "CostDetailLabel">
+                <div>
+                    <object data="css/imgs/clockIcon.svg" width="40px" height="40px"> </object>
+                </div>
                 <div class="Text">Reservation</div>
-                <div class="Text"></div>
+                <div class="Text" id = "ReservationAmountLabel"></div>
             </div>
             <div class = "CostDetailLabel">
+                <div>
+                    <object data="css/imgs/additionalCostIcon.svg" width="40px" height="40px"> </object>
+                </div>
                 <div class="Text">Additional Costs</div>
-                <div class="Text"></div>
+                <div class="Text" id = "AdditionalCostAmountLabel"></div>
             </div>
             <div class = "CostDetailLabel">
+                <div>
+                    <img src="css/imgs/taxes.png">
+                </div>
                 <div class="Text">Taxes</div>
-                <div class="Text"></div>
+                <div class="Text" id = "TaxesAmountLabel"></div>
             </div>
             
         </div>
         <div class="TotalCost">
-            <div class="Title">Total Cost</div>
+            <div class="Text">Total Cost</div>
+            <div class="Text" id = 'TotalCostAmountLabel'></div>
         </div>
         <div class="PrivacyLabel">
             <div class="Text">By paying, you accept our Term of Service. <br>
                 See our Privacy Policy for more details </div>
         </div>
-        <div class="PaymentMethod"></div>
+        <div class="PaymentMethod">
+            <div class="PaymentMethodContainer">
+                <div id="Paypal" >
+                    <button class="PayPalButton"></button>
+                </div>
+                <div id="GooglePay">
+                    <button class="googlePayButton"></button>
+                </div>
+                <div id="ApplePay">
+                    <button class="applePayButton"></button>
+                </div>
+                <div id="MobilePay">
+                    <button class="VisaPayButton"></button>
+                </div>
+                <div id="Visa">
+                    <button class="VisaButton"></button>
+                </div>
+                <div id="Mastercard">
+                    <button class="mastercardButton"></button>
+                </div>
+                <div id="PayButton" class="Text">Pay</div>
+            </div>
+        </div>
       </div>
       <script src="https://cdn.socket.io/4.5.3/socket.io.min.js" integrity="sha384-WPFUvHkB1aHA5TDSZi6xtDgkF0wXJcIIxXhC6h8OT8EH3fC5PWro5pWJ1THjcfEi" crossorigin="anonymous"></script>
       <script src='js/bookPage.js'></script>

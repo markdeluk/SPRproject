@@ -113,6 +113,38 @@ html, body {
     flex-direction: row;
     gap: 6px;
   }
+  .PaymentMethodContainer{
+    display: flex;
+    flex-direction: row;
+    max-width: 296px;
+    height: 37px;
+    width: 296px;
+    border-radius: 43px;
+    border-color: rgba(0, 163, 255,1);
+    background-color:rgba(0, 163, 255,1) ;
+    border-width: 2px;
+    border-style: solid;
+    gap: 10%;
+    color:rgba(0, 163, 255,1);
+  }
+  .PayPalButton{
+    background-image: url('imgs/paypalIcon.png');
+  }
+  .VisaButton{
+    background-image: url('imgs/visaButton.png');
+  }
+  .mobilePayButton{
+    background-image: url('imgs/mobilePayIcon.png');
+  }
+  .googlePayButton{
+    background-image: url('imgs/googlePayIcon.png');
+  }
+  .mastercardButton{
+    background-image: url('imgs/mastercardIcon.png');
+  }
+  .applePayButton{
+    background-image: url('imgs/applePayIcon.png');
+  }
 
 
   

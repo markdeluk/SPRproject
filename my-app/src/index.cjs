@@ -101,6 +101,17 @@ app.post('/CaptureImage', function (request, response){
 app.post('/PhotoCapture', function (request, response){
     response.sendFile(path.join(__dirname+'/photoCapture.html'));
 });
+app.post('/Renting', function(request, response) {
+    //response.render('pages/home');
+    response.sendFile(path.join(__dirname+'/renting.html'));
+});
+app.post('/ShowDamageAfter', function (request, response){
+    response.sendFile(path.join(__dirname+'/ShowDamageAfter.html'));
+});
+app.post('/LendPage', function (request, response){
+    response.sendFile(path.join(__dirname+'/LendPage.html'));
+});
+
 //TEST
 app.get('/PhotoCapture', function (request, response){
     response.sendFile(path.join(__dirname+'/photoCapture.html'));
@@ -108,4 +119,21 @@ app.get('/PhotoCapture', function (request, response){
 
 app.get('/CaptureImage', function (request, response){
     response.sendFile(path.join(__dirname+'/CaptureImage.html'));
+});
+app.get('/Renting', function(request, response) {
+    ///TODO: connect variables
+    //response.render('pages/home');
+    var username = "";
+    var password = "";
+    var bikename = "";
+    var address = "";
+    var orderID = "";
+    response.render("Renting",{username:username,password:password,bikename:bikename,address:address,orderID:orderID});
+    
+});
+app.get('/ShowDamageAfter', function (request, response){
+    response.sendFile(path.join(__dirname+'/ShowDamageAfter.html'));
+});
+app.get('/LendPage', function (request, response){
+    response.sendFile(path.join(__dirname+'/LendPage.html'));
 });

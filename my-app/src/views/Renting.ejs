@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+        <link rel="stylesheet" href="css/renting.css">
+    </head>
+    <body>
+        <div id='map'></div>
+        <div class="container">
+            <div class="BikeInfoContainer">
+                <div class = "firstLine">
+                    <div class="infoColumn">
+                        <div class="Text" id = "BikeName"></div>
+                        <div class = "SmallText" id = "Address"></div>
+                        <div class = "SmallText" id = "Time"> </div>
+                    </div>
+                    <button class="GiveBackButton" id = "GiveBackButton">
+                        <div class="Text">Give Back</div>
+                    </button>
+                </div>
+                <div class="TimeBarContainer" id ="TimeBarOut">
+                    <div class="TimeBar" id = TimeBarIn></div>
+                </div>
+            </div>         
+            <div class="secondLine">
+                <img src="css/imgs/bikeIcon.png" style="width: 60px ;height:60px">
+                <div class="Text">Bikes around you</div>
+            </div>
+            <div class = "blackLine"></div>
+            <div class="ButtonsContainer">
+                <button id = "RentButton">
+                    <div class="Button">
+                        <img src="css/imgs/selectedDownArrow.png">
+                        <div class="Text">Rent</div>
+                    </div>
+                </button>
+                <button id = "LendButton">
+                    <div class="Button">
+                        <img src="css/imgs/notselectedUpArrow.png">
+                        <div class="Text">Lend</div>
+                    </div>
+                </button>
+                <button id = "ProfileButton">
+                    <div class="Button">
+                        <img src="css/imgs/profileIcon.png">
+                        <div class="Text">Profile</div>
+                    </div>
+                </button>
+                <button id = "InfoButton">
+                    <div class="Button">
+                        <img src="css/imgs/InfoIcon.png">
+                        <div class="Text">Info</div>
+                    </div>
+                </button>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+        <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-map.js?key=AuNooZItAA8tywWGajwtwAzbZaq7Nxkc"></script>
+        <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-routing.js?key=AuNooZItAA8tywWGajwtwAzbZaq7Nxkc"></script>
+        <script src="https://cdn.socket.io/4.5.3/socket.io.min.js" integrity="sha384-WPFUvHkB1aHA5TDSZi6xtDgkF0wXJcIIxXhC6h8OT8EH3fC5PWro5pWJ1THjcfEi" crossorigin="anonymous"></script>
+        <script src="js/renting.cjs"></script>
+    </body>
+</html>

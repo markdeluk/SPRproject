@@ -116,9 +116,8 @@ html, body {
   .PaymentMethodContainer{
     display: flex;
     flex-direction: row;
-    max-width: 296px;
     height: 37px;
-    width: 296px;
+    width: 80%;
     border-radius: 43px;
     border-color: rgba(0, 163, 255,1);
     background-color:rgba(0, 163, 255,1) ;
@@ -129,21 +128,39 @@ html, body {
   }
   .PayPalButton{
     background-image: url('imgs/paypalIcon.png');
+    background-color:rgba(0, 163, 255,1) ;
+    width: 35px;
+    height: 35px;
   }
   .VisaButton{
     background-image: url('imgs/visaButton.png');
+    background-color:rgba(0, 163, 255,1) ;
+    width: 35px;
+    height: 35px;
   }
   .mobilePayButton{
     background-image: url('imgs/mobilePayIcon.png');
+    background-color:rgba(0, 163, 255,1) ;
+    width: 35px;
+    height: 35px;
   }
   .googlePayButton{
     background-image: url('imgs/googlePayIcon.png');
+    background-color:rgba(0, 163, 255,1) ;
+    width: 35px;
+    height: 35px;
   }
   .mastercardButton{
     background-image: url('imgs/mastercardIcon.png');
+    background-color:rgba(0, 163, 255,1) ;
+    width: 35px;
+    height: 35px;
   }
   .applePayButton{
     background-image: url('imgs/applePayIcon.png');
+    background-color:rgba(0, 163, 255,1) ;
+    width: 35px;
+    height: 35px;
   }
 
 

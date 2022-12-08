@@ -27,16 +27,16 @@ app.use('/img', express.static(__dirname + 'public/images'))
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname+'/login.html'));
 });
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+app.listen(3002, function () {
+  console.log('Example app listening on port 3002!');
 });
 
 app.post('/auth', function(request, response) {
     //response.render('pages/home');
-    console.log(request.body)
-   // var username = request.body.username;
-	//var password = request.body.password;
-    console.log(__dirname)
+    var username = request.body.username;
+	var password = request.body.password;
+    console.log('login '+ username + password)
+    //console.log(__dirname)
     response.redirect('/home');
     //response.sendFile(path.join(__dirname+'/mainpage.html'));
 });
@@ -49,8 +49,8 @@ app.get('/home', function(request, response) {
 
 
 app.post('/book', function(request, response) {
-    console.log("Info from more detail:")
-    console.log(request.body)
+    //console.log("Info from more detail:")
+   // console.log(request.body)
     var bikeName = request.body['bikeName']
     var bikeDescription = request.body['bikeDescription']
     var bikeAddress = request.body['bikeAddress']
@@ -61,6 +61,7 @@ app.post('/book', function(request, response) {
 });
 
 app.post('/Paypal', function(request, response) {
+    console.log("Redirecting to PayPal")
     var TotalAmount = request.body['TotalAmount'];
     var Currency = request.body['Currency'];
     response.render("PayPal",{totalamount:TotalAmount,currency:Currency});
@@ -89,4 +90,22 @@ app.post('/MobilePay', function(request, response) {
     var TotalAmount = request.body['TotalAmount'];
     var Currency = request.body['Currency'];
     response.render("MobilePay",{totalamount:TotalAmount,currency:Currency});
+});
+
+app.post('/LockPage', function (request, response){
+    response.sendFile(path.join(__dirname+'/LockPage.html'));
+});
+app.post('/CaptureImage', function (request, response){
+    response.sendFile(path.join(__dirname+'/CaptureImage.html'));
+});
+app.post('/PhotoCapture', function (request, response){
+    response.sendFile(path.join(__dirname+'/photoCapture.html'));
+});
+//TEST
+app.get('/PhotoCapture', function (request, response){
+    response.sendFile(path.join(__dirname+'/photoCapture.html'));
+});
+
+app.get('/CaptureImage', function (request, response){
+    response.sendFile(path.join(__dirname+'/CaptureImage.html'));
 });

@@ -43,12 +43,12 @@ var TotalCostAmountLabel = document.getElementById('TotalCostAmountLabel');
 
 
 //Payment Buttons
-var PaypalButton = document.getElementById('Paypal').firstChild;
-var MobilePayButton = document.getElementById('MobilePay').firstChild;
-var ApplePayButton = document.getElementById('ApplePay').firstChild;
-var GooglePayButton = document.getElementById('GooglePay').firstChild;
-var VisaButton = document.getElementById('Visa').firstChild;
-var MasterCardButton = document.getElementById('Mastercard').firstChild;
+var PaypalButton = document.getElementById('Paypal');
+var MobilePayButton = document.getElementById('MobilePay');
+var ApplePayButton = document.getElementById('ApplePay');
+var GooglePayButton = document.getElementById('GooglePay');
+var VisaButton = document.getElementById('Visa');
+var MastercardButton = document.getElementById('Mastercard');
 
 PaypalButton.addEventListener("click",function(){PaymentPage('Paypal')});
 ApplePayButton.addEventListener("click",function(){PaymentPage('ApplePay')});
@@ -68,7 +68,12 @@ monthButton.addEventListener("click",function(){monthActivate();});
 
 
 function PaymentPage(paymentMethod){
+    console.log(paymentMethod);
     var form = document.createElement('form');
+    form.setAttribute('method', 'post');
+    var route = '/'+paymentMethod;
+    console.log('route '+ route);
+    form.setAttribute('action', route);
     var inputTotalAmount=document.createElement('input');
     inputTotalAmount.setAttribute("type", "text");
     inputTotalAmount.setAttribute('name','TotalAmount');
@@ -84,9 +89,6 @@ function PaymentPage(paymentMethod){
     form.style.display = 'hidden';
     document.body.appendChild(form)
     form.submit();
-    //create a form
-    form.setAttribute('method', 'post');
-    form.setAttribute('action', '/'+paymentMethod);
 }
 
 function updateLabelValues(){

@@ -1,8 +1,14 @@
 //this javascript file will act as an intermediate between the MySQL database and the client
 const http = require('http');
+const fs = require('fs');
+/*
+const options = {
+  key: fs.readFileSync('agent2-key.pem'),
+  cert: fs.readFileSync('agent2-cert.pem')
+};
+*/
 var express = require('express'); 
 const app = express();
-var fs = require('fs');
 const server = http.createServer(app);
 var mysql = require('mysql');
 //instantiate database connection

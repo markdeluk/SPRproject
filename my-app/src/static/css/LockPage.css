@@ -9,6 +9,13 @@ body{
     align-items: center;
     font-size: 30px;
   }
+.PinCodeText{
+    font-family: 'IBM Plex Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 62px;
+}
 .selectedColor{
     color:#00A3FF;
 }
@@ -22,29 +29,10 @@ body{
     
     gap : 10px;
 }
-.SkipButton{
+.DoneButton{
     width: 141px;
     height: 53px;
     background: #FFFFFF;
     border: 2px solid #000000;
     border-radius: 43px;
-}
-.CaptureButton{
-    width: 141px;
-    height: 53px;
-    background: #FFFFFF;
-    border: 2px solid #00A3FF;
-    border-radius: 43px;
-}
-.PhotoCaptured{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.doneContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    gap: 10px;
 }

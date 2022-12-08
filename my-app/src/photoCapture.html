@@ -1,19 +1,32 @@
 <html>
     <head>
-        <link rel='stylesheet' type='text/css' media='screen' href='css/bookPage.css'>
+        <link rel='stylesheet' type='text/css' media='screen' href='css/photoCapture.css'>
     </head>
     <body>
         <div class="container">
             <div class ="doneContainer">
-             <img src="css/imgs/doneIcon.png"/>
-             <div>Done</div>
+             <img src="css/imgs/doneIcon.png"/ height="60px" width="60px">
+             <div class="Text">Done</div>
             </div>
-            <div class="PhotoCaptured"></div>
-            <div>Take a Picture to Show Damage</div>
+            <div class="PhotoCaptured" id = "CameraFrame" >
+                <img src="css//imgs/coverPhotoCapture.png" height="300px" width="450px" id="Camera">
+                
+            </div>
+            <div class="Text">Take a Picture to Show Damage</div>
             <div>
-                <button class="SkipButton">Skip</button>
-                <button class="CaptureButton">Capture</button>
+                <button class="SkipButton" id = "SkipButton">
+                    <div class="Text">Skip</div>
+                </button>
+                <button class="CaptureButton" id = "CaptureButton">
+                    <div class="Text selectedColor">Capture</div>
+                </button>
+                <button class="SkipButton" id = "click-photo">
+                    <label>Click Photo</label>
+                </button>
             </div>
         </div>
+    <canvas id="canvas" width="320" height="240"></canvas>
+        <script src="https://cdn.socket.io/4.5.3/socket.io.min.js" integrity="sha384-WPFUvHkB1aHA5TDSZi6xtDgkF0wXJcIIxXhC6h8OT8EH3fC5PWro5pWJ1THjcfEi" crossorigin="anonymous"></script>
+      <script src='js/photoCapture.js'></script>
     </body>
 </html>

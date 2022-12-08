@@ -1,7 +1,7 @@
 // default map layer
 const socket = io("http://LAPTOP-7M6U6UFG:4000", {
     withCredentials: true
-    });
+    }, {secure: true});
 let map = L.map('map', {
     layers: MQ.mapLayer(),
     center: [35.791188, -78.636755],

@@ -1,0 +1,106 @@
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  .container{
+    display: flex;
+    flex-direction: column;
+    margin : auto;
+    align-items: center;
+    margin-top: 10%;
+    gap : 15%;
+    height: 100%;
+    width: 90%;
+    
+}
+.FirstContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5%;
+    height: 60%;
+}
+.ContactContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    gap : 10px;
+}
+.IconText{
+    display: flex;
+    flex-direction: row;
+    margin-right: 5%;
+    gap : 5%;
+}
+
+.blackLine{
+    width: 100%;
+    height: 0px;
+    border: 2px solid #000000;
+
+    
+}
+.ButtonsContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap : 5%;
+    background: #FFFFFF;
+    justify-content: center;
+    border: 2px solid #000000;
+    border-radius: 30px;
+    width: 100%;
+    height: 180px;
+}
+.Button{
+    display: flex;
+    flex-direction: column;
+    background: #FFFFFF;
+}
+
+.Icon{
+    width: 40px;
+    height: 40px;
+}
+.LineCredits{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+.AppContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+.Selected{
+    color: #00A3FF;
+}
+
+
+/* TEXT FORMATTING */
+.Text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+  }
+.TextNotCentered{
+    display: flex;
+    font-size: 40px;
+}
+
+.CreditsContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    gap : 10px;
+}
+
+.SmallText{
+    display: flex;
+    font-size: 30px;
+}

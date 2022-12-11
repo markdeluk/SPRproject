@@ -16,6 +16,7 @@ let TimeBarOut = document.getElementById('TimeBarOut');
 let GiveBackButton = document.getElementById('GiveBackButton');
 let RentButton = document.getElementById('RentButton');
 let LendButton = document.getElementById('LendButton');
+let InfoButton = document.getElementById('InfoButton')
 //TEST DATA
 
 let BikeName = "City Bike";
@@ -33,6 +34,7 @@ AddressLabel.innerHTML = Address;
 TimeLabel.innerHTML = Time;
 GiveBackButton.addEventListener('click', function(){ShowDamagePage()});
 LendButton.addEventListener('click', function(){LendPage()});
+InfoButton.addEventListener('click',function(){InfoPage();});
 updateClock();
 //function that return difference in days, hours, minutes, and seconds.
 function getDifference(end,start){
@@ -90,5 +92,17 @@ function LendPage(){
     document.body.appendChild(form)
     form.submit();
 }
+
+function InfoPage(){
+    console.log("Redirect to Lend Page");
+    var form = document.createElement('form');
+    form.setAttribute('method', 'post');
+    form.setAttribute('action', '/InfoPage');
+    form.style.display = 'hidden';
+    document.body.appendChild(form)
+    form.submit();
+}
+
+
 updateClock(); // initial call
 

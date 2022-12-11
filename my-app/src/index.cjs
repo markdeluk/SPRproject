@@ -112,6 +112,21 @@ app.post('/LendPage', function (request, response){
     response.sendFile(path.join(__dirname+'/LendPage.html'));
 });
 
+app.post('/InfoPage', function (request, response){
+    response.sendFile(path.join(__dirname+'/InfoPage.html'));
+});
+
+app.post('/IntroductionLendPage', function (request, response){
+    response.sendFile(path.join(__dirname+'/IntroductionLendPage.html'));
+});
+app.post('/InputLendPage', function (request, response){
+    response.sendFile(path.join(__dirname+'/InputLendPage.html'));
+});
+app.post('/InputLockPage', function (request, response){
+    response.sendFile(path.join(__dirname+'/InputLockPage.html'));
+});
+
+
 //TEST
 app.get('/PhotoCapture', function (request, response){
     response.sendFile(path.join(__dirname+'/photoCapture.html'));
@@ -137,3 +152,17 @@ app.get('/ShowDamageAfter', function (request, response){
 app.get('/LendPage', function (request, response){
     response.sendFile(path.join(__dirname+'/LendPage.html'));
 });
+
+app.get('/InfoPage', function (request, response){
+    response.sendFile(path.join(__dirname+'/InfoPage.html'));
+});
+app.get('/IntroductionLendPage', function (request, response){
+    response.sendFile(path.join(__dirname+'/IntroductionLendPage.html'));
+});
+app.get('/InputLendPage', function (request, response){
+    response.sendFile(path.join(__dirname+'/InputLendPage.html'));
+});
+app.get('/InputLockPage', function (request, response){
+    response.sendFile(path.join(__dirname+'/InputLockPage.html'));
+});
+

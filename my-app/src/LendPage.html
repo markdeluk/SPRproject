@@ -1,40 +1,46 @@
 <html>
     <head>
         <link rel='stylesheet' type='text/css' media='screen' href='css/LendPage.css'>
+        <link rel="stylesheet" href="css/Components.css">
+        <link rel="stylesheet" href="css/General.css">
+        <link rel="stylesheet" href="css/Text.css">
     </head>
     <body>
         <div class="container">
-            <div class="FirstContainer">
+            <div class="MainContainer">
                 <img src="css/imgs/LendMoneyIcon.png" style="width: 300px;height: 300px;">
-                <div class = "LongText">Contribute to our platform by lending your bike and earning up to</div>
-                <div class="BigText">15DKK</div>
+                <div class = "LongText">Contribute to our platform by lending <br>your bike and earning up to</div>
+                <div class="BigText"><b>15DKK</b></div>
                 <div class = "Text">for each hour and each person using it.</div>
-                <button class="GetStartedButton" id = "GetStartedButton">
-                    <div class = "Text"> Get Started</div>
+                <button class="SingleButton" id = "GetStartedButton">
+                    <div>
+                        <div class = "Text SingleButtonContent"> Get Started</div>
+                    </div>
+                   
                 </button>
             </div>
-            <div class="ButtonsContainer">
-                <button id = "RentButton">
-                    <div class="Button">
-                        <img src="css/imgs/notselectedDownArrow.png">
+            <div class="ButtonsContainer SmallMenuButtons">
+                <button id = "RentButton" class="Button">
+                    <div class="ContentButton">
+                        <img src="css/imgs/notselectedDownArrow.png" class="IconButton">
                         <div class="Text">Rent</div>
                     </div>
                 </button>
-                <button id = "LendButton">
-                    <div class="Button">
-                        <img src="css/imgs/selectedUpArrow.png">
+                <button id = "LendButton" class="Button">
+                    <div class="ContentButton">
+                        <img src="css/imgs/selectedUpArrow.png" class="IconButton">
                         <div class="Text Selected">Lend</div>
                     </div>
                 </button>
-                <button id = "ProfileButton">
-                    <div class="Button">
-                        <img src="css/imgs/profileIcon.png">
+                <button id = "ProfileButton" class="Button">
+                    <div class="ContentButton">
+                        <img src="css/imgs/profileIcon.png" class="IconButton">
                         <div class="Text">Profile</div>
                     </div>
                 </button>
-                <button id = "InfoButton">
-                    <div class="Button">
-                        <img src="css/imgs/InfoIcon.png">
+                <button id = "InfoButton" class="Button">
+                    <div class="ContentButton">
+                        <img src="css/imgs/InfoIcon.png" class="IconButton">
                         <div class="Text">Info</div>
                     </div>
                 </button>

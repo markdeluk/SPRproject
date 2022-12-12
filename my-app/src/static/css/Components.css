@@ -18,12 +18,34 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+  }
+  .SmallMenuButtons{
     gap : 5%;
+    background: #FFFFFF;
+    justify-content: center;
+    border: 2px solid #000000;
+    border-radius: 30px;
+    width: 100%;
+    height: 180px;
+}
+  .MenuButtoncontainer{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top:70%;
+    left:2%;
+    width: 95%;
+    height: 26%;
+    background: #FFFFFF;
+    justify-content: center;
+    gap : 10%;
+    border: 2px solid #000000;
+    border-radius: 43px;
   }
 
-
   /*COMPONENTS*/
-    /*BUTTONS*/
+/*Menu Button*/
+
   .ContentButton{
     display: flex;
     flex-direction: column;
@@ -39,6 +61,19 @@
     width: 113px;
     height: 113px;
   }
+
+  /*Single Button*/
+  .SingleButton{
+    display: flex;
+    gap: 10px;
+    background: #FFFFFF;
+    border: 2px solid #000000;
+    border-radius: 43px;
+}
+.SingleButtonContent{
+    margin: 20px;
+}
+
 
   .blackLine{
     width: 90%;

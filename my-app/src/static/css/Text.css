@@ -2,6 +2,11 @@
     font-family: IBM_Plex_Sans;
     src: url(Fonts/IBM_Plex_Sans/IBMPlexSans-Regular.ttf);
   }
+  @font-face {
+    font-family: myFirstFont;
+    src: url(Fonts/IBM_Plex_Sans/IBMPlexSans-Bold.ttf);
+    font-weight: bold;
+  }
 
 
 .Text{
@@ -9,9 +14,21 @@
     font-size: 50px;
     font-family: IBM_Plex_Sans;
   }
+
   .SmallText{
     display: flex;
     font-size: 30px;
+    font-family: IBM_Plex_Sans;
+  }
+  .BigText{
+    display: flex;
+    font-size: 80px;
+    font-family: IBM_Plex_Sans;
+}
+  .LongText{
+    display: flex;
+    font-size: 40px;
+    text-align: center;
     font-family: IBM_Plex_Sans;
   }
   .Selected {

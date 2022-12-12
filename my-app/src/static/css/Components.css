@@ -110,6 +110,18 @@
     border: none;
     margin: 20px;
 }
+/*Input Pin*/
+.InputPin{
+    background: #fff url('imgs/PinCodeDigits.png') no-repeat;
+    letter-spacing: 55px;
+    width: 293;
+    height: 50px;
+    padding-left: 20px;
+    border: none;
+    outline: 0;
+    background-position: bottom;
+    overflow: hidden;
+}
 
 
   .blackLine{

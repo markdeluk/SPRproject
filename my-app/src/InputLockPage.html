@@ -1,34 +1,37 @@
 <html>
     <head>
         <link rel='stylesheet' type='text/css' media='screen' href='css/InputLockPage.css'>
+        <link rel="stylesheet" href="css/Components.css">
+        <link rel="stylesheet" href="css/General.css">
+        <link rel="stylesheet" href="css/Text.css">
     </head>
     <body>
-        <div class="container">
-            <div class="firstLine">
-                <button>
-                    <img src="css/imgs/left_arrow.png">
-                    <div class="Text">Go Back</div>
+        <div class="BigContainer">
+            <div class="Line space_between">
+                <button id = "BackButton" class="SingleButton">
+                    <img src="css/imgs/left_arrow.png" class="BigIcon">
+                    <div class="Text SingleButtonContent"style="font-size: 40px;" >Go Back</div>
                 </button>
-                <div class="Text">Add Bike To Lend</div>
+                <div class="Text" style="font-size: 40px;">Add Bike To Lend</div>
             </div>
             <div class="ExplanationContainer">
                 <div class="LineExplanation">
-                    <img src="css/imgs/FullCircle3.png" class="Icon">
-                    <img src="css/imgs/articleIcon.png" class="Icon">
-                    <div class="Text">Write some information about the bike</div>
+                    <img src="css/imgs/FullCircle3.png" class="BigIcon">
+                    <img src="css/imgs/articleIcon.png" class="BigIcon">
+                    <div class="MediumText">Write some information about the bike</div>
                 </div>
                 <div class="LineExplanation">
-                    <img src="css/imgs/Circle4.png" class="Icon">
-                    <img src="css/imgs/keyIcon.png" class="Icon">
-                    <div class="Text">Type the locking code</div>
+                    <img src="css/imgs/Circle4.png" class="BigIcon">
+                    <img src="css/imgs/keyIcon.png" class="BigIcon">
+                    <div class="MediumText">Type the locking code</div>
                     </div>
             </div>
             <div class="SmallText">Type Here</div>
-            <div>
-                <input type="text" maxlength="4" id = "PinLock">
+            <div class="Line center">
+                <input type="text"  class = "InputPin MediumText" maxlength="4" id = "PinLock">
             </div>
-            <button class="StartButton" id = "NextButton">
-                <div class="Text">Next</div>
+            <button class="SingleButton" id = "NextButton">
+                <div class="Text SingleButtonContent">Next</div>
             </button>
         </div>
         <script src='js/InputLockPage.js'></script>

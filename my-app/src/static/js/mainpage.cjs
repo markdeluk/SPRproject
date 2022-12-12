@@ -100,8 +100,7 @@ form.addEventListener('submit', submitForm);
           // creating image
           var image= new Image();
           image.src = 'data:image/png;base64,'+enc.decode(msg[i]['img_src']);
-          image.style.height="100%";
-          image.style.width="30%";
+          image.classList.add('PictureFrame')
 
           // Create bike container
           var divContainer= document.createElement("div");
@@ -116,25 +115,30 @@ form.addEventListener('submit', submitForm);
 
           //appendText from imcoming message
           var name = document.createElement('label');
+          name.classList.add('MediumText',"LeftGap","centered");
           name.innerHTML =  msg[i]['name'];
           divName.appendChild(name);
           
           var model = document.createElement('label');
           model.innerHTML =  msg[i]['model'];
+          model.classList.add('MediumText',"LeftGap");
           divModel.appendChild(model); 
           
           var bikePosition = document.createElement('label');
           bikePosition.innerHTML =  msg[i]['coordinates'];
+          bikePosition.classList.add('MediumText',"LeftGap");
           divPosition.appendChild(bikePosition);
 
           var bookButton = document.createElement("button");
-          bookButton.classList.add("bookButtonStyle");
+          let bookButtonLabel = document.createElement("div");
+          bookButtonLabel.classList.add("SingleButtonContent","MediumText","centered");
+          bookButtonLabel.innerHTML = "Book";
+          bookButton.classList.add("bookButtonStyle","SingleButton");
+          bookButton.appendChild(bookButtonLabel);
           bookButton.id=i;
           console.log("before");
           console.log(msg);
           bookButton.addEventListener("click",function(){loadBikeSpecificInfo(msg,this.id)}); 
-          
-          bookButton.innerHTML = "Book";
           divButton.appendChild(bookButton);
           
 

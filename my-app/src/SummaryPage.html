@@ -1,61 +1,64 @@
 <html>
     <head>
         <link rel='stylesheet' type='text/css' media='screen' href='css/SummaryPage.css'>
+        <link rel="stylesheet" href="css/Components.css">
+        <link rel="stylesheet" href="css/General.css">
+        <link rel="stylesheet" href="css/Text.css">
     </head>
     <body>
-        <div class="container">
-            <div class="firstLine">
-                <button>
-                    <img src="css/imgs/left_arrow.png">
-                    <div class="Text">Go Back</div>
+        <div class="BigContainer">
+            <div class="Line space_between">
+                <button id = "BackButton" class="SingleButton">
+                    <img src="css/imgs/left_arrow.png" class="BigIcon">
+                    <div class="Text SingleButtonContent"style="font-size: 40px;" >Go Back</div>
                 </button>
-                <div class="Text">Add Bike To Lend</div>
+                <div class="Text" style="font-size: 40px;">Add Bike To Lend</div>
             </div>
             <div class="ExplanationContainer">
                 <div class="smallText">To be done, follow these simple steps:</div>
                 <div class="LineExplanation">
-                    <img src="css/imgs/FullCircle1.png" class="Icon">
-                    <img src="css/imgs/shoppingCartIcon.png" class="Icon">
+                    <img src="css/imgs/FullCircle1.png" class="BigIcon">
+                    <img src="css/imgs/shoppingCartIcon.png" class="BigIcon">
                     <div class="Text">Buy or get a locking system on your own</div>
                 </div>
                 <div class="LineExplanation">
-                    <img src="css/imgs/FullCircle2.png" class="Icon">
-                    <img src="css/imgs/lockIcon.png" class="Icon">
+                    <img src="css/imgs/FullCircle2.png" class="BigIcon">
+                    <img src="css/imgs/lockIcon.png" class="BigIcon">
                     <div class="Text">Install it on your bike</div>
                 </div>
                 <div class="LineExplanation">
-                    <img src="css/imgs/FullCircle3.png" class="Icon">
-                    <img src="css/imgs/articleIcon.png" class="Icon">
+                    <img src="css/imgs/FullCircle3.png" class="BigIcon">
+                    <img src="css/imgs/articleIcon.png" class="BigIcon">
                     <div class="Text">Write some information about the bike</div>
                 </div>
                 <div class="LineExplanation">
-                    <img src="css/imgs/fullCircle4.png" class="Icon">
-                    <img src="css/imgs/keyIcon.png" class="Icon">
+                    <img src="css/imgs/fullCircle4.png" class="BigIcon">
+                    <img src="css/imgs/keyIcon.png" class="BigIcon">
                     <div class="Text">Type the locking code</div>
                     </div>
                 <div class="LineExplanation">
-                    <img src="css/imgs/FullCircle5.png" class="Icon">
-                    <img src="css/imgs/cameraIcon.png" class="Icon">
+                    <img src="css/imgs/FullCircle5.png" class="BigIcon">
+                    <img src="css/imgs/cameraIcon.png" class="BigIcon">
                     <div class="Text">Take a few pictures of the bike</div>
                 </div>
 
             </div>
-            <div class="Text">According to the declared information 
+            <div class="MediumText">According to the declared information 
                 about your bike, you will earn</div>  
             <div class="DetailContainer">
                 <div class = "CostDetailLabel">
-                    <div class = "IconDescriptionContainer">
+                    <div class = "Line">
                         <div>
-                            <img src="css/imgs/fullDollarIcon.png" class="Icon">
+                            <img src="css/imgs/fullDollarIcon.png" class="BigIcon">
                         </div>
                         <div class="Text">Gross</div>
                     </div>
                     <div class="Text" id = "GrossAmountLabel"></div>
                 </div>
                 <div class = "CostDetailLabel">
-                    <div class = "IconDescriptionContainer">
+                    <div class = "Line">
                         <div>
-                            <img src="css/imgs/taxes.png" class="Icon">
+                            <img src="css/imgs/taxes.png" class="BigIcon">
                         </div>
                         <div class="Text">Taxes</div>
                     </div>
@@ -63,18 +66,18 @@
                 </div>
             <div class = "blackLine"></div>   
             <div class = "CostDetailLabel">
-                <div class = "IconDescriptionContainer">
+                <div class = "Line">
                     <div>
-                        <img src="css/imgs/notfullDollarIcon.png" class="Icon">
+                        <img src="css/imgs/notfullDollarIcon.png" class="BigIcon">
                     </div>
                     <div class="Text">Net</div>
-                    <div class="Text" id = "NetAmountLabel"></div>
                 </div>
+                <div class="Text" id = "NetAmountLabel"></div>
             </div>
          </div>
          <div class="Text">for each hour of usage and for each person.</div> 
          <button class="BlueButton" id = "submitButton">
-            <div class="Text White">Submit</div>
+            <div class="Text White SingleButtonContent">Submit</div>
          </button>       
     </div>
         <script src='js/SummaryPage.js'></script>

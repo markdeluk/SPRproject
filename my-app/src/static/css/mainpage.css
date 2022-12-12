@@ -18,14 +18,14 @@
 .results {
   display: flex;
   max-width: 90%;
-  height: 60%;
+  height: 90%;
   width: 90%;
   border-radius: 59.5px;
   border-color: rgba(0, 0, 0, 1);
   border-width: 2px;
   border-style: solid;
   background-color: rgba(255, 255, 255, 1);
-  top:35%;
+  top:5%;
   position:absolute;
   overflow: hidden;
   visibility: hidden;
@@ -145,7 +145,7 @@ margin-right: 5%;
         grid-template-columns: 0.25fr 0.25fr 0.25fr  0.25fr; 
         grid-template-rows: 0.05fr 0.05fr 0.05fr 0.70fr; 
         gap: 0px 0px; 
-        background-color: #e44747;
+        background-color: #ffffff;
         padding: 1px;
       }
       
@@ -181,7 +181,7 @@ STYLE FOR MORE INFO ABOUT A SPECIFIC BIKE
     "RESERVE RESERVE RESERVE BOOK-NOW BOOK-NOW BOOK-NOW "
     "MORE-INFO-BUTTON MORE-INFO-BUTTON MORE-INFO-BUTTON MORE-INFO-BUTTON MORE-INFO-BUTTON MORE-INFO-BUTTON";
     gap: 0px 0px; 
-        background-color: #e44747;
+        background-color: #ffffff;
         padding: 1px;
 }
 .MoreInfoBikeContainer > div {

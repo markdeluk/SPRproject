@@ -1,11 +1,29 @@
 <html>
-    <body>
-        <div class="form">
-            <h2>Login information</h2>
-            <form action="/auth" method = "post">
-              <input type="text" placeholder="E-Mail" name="username" id="username" required/>
-              <input type="password" placeholder="Password" name="password" id="password" required/>
-              <button>Login</button>
-            </form>
+  <head>
+    <link rel="stylesheet" href="css/login.css">
+        <link rel="stylesheet" href="css/Components.css">
+        <link rel="stylesheet" href="css/General.css">
+        <link rel="stylesheet" href="css/Text.css">
+  </head>
+    <body class="Background">
+      <form action="/auth" method = "post">
+      <div class="container centered " id="Background">
+            <div class="smallContainer">
+              <input type="text" class="InputBox MediumText" placeholder="E-Mail" name="username" id="username" required style=""/>
+              <input type="password" class="InputBox MediumText" placeholder="Password" name="password" id="password" required/>
+              <div class="Line center">
+                <button class="SingleButton">
+                  <div class="Text SingleButtonContent">Login</div>
+                </button>
+                <button class="SingleButton">
+                  <div class="Text SingleButtonContent">Register</div>
+                </button>
+              </div>
+            </div>
+
+          </div>
+          
+        
+          
     </body>
 </html>

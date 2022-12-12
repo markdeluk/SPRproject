@@ -8,6 +8,7 @@ html, body {
     justify-content: center;
     margin: auto ;
     margin-top: 20%;
+    gap: 20px;
     height: 100%;
 }
 .BigContainer{
@@ -15,11 +16,16 @@ html, body {
     flex-direction: column;
     margin : auto;
     align-items: center;
-    margin-top: 10%;
-    gap: 100px;
+    gap: 60px;
     height: 100%;
     
 }
 .LeftGap{
     margin-left: 5%;
+}
+.centered{
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }

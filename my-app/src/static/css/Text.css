@@ -13,6 +13,12 @@
     display: flex;
     font-size: 50px;
     font-family: IBM_Plex_Sans;
+    color: black;
+  }
+  .MediumText{
+    display: flex;
+    font-size: 40px;
+    font-family: IBM_Plex_Sans;
   }
 
   .SmallText{

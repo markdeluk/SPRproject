@@ -4,14 +4,26 @@
 .Line{
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    align-items: center;
     margin-right: 5%;
+    gap : 10px;
+    width: 100%;
 
+  }
+  .space_between{
+    justify-content: space-between;
+  }
+  .center{
+    justify-content: center;
   }
   .infoColumn{
     display: flex;
     flex-direction: column;
     width: 100%;
+  }
+  .VerticalContainer{
+    display: flex;
+    flex-direction: column;
   }
   
   .ButtonsContainer{
@@ -42,7 +54,17 @@
     border: 2px solid #000000;
     border-radius: 43px;
   }
-
+  .ExplanationContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.LineExplanation{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+}
   /*COMPONENTS*/
 /*Menu Button*/
 
@@ -65,6 +87,8 @@
   /*Single Button*/
   .SingleButton{
     display: flex;
+    flex-direction: row;
+    align-items: center;
     gap: 10px;
     background: #FFFFFF;
     border: 2px solid #000000;
@@ -83,6 +107,10 @@
     
   }
   .Icon{
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
+  }
+  .BigIcon{
+    width: 80px;
+    height: 80px;
   }

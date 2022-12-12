@@ -45,6 +45,14 @@ app.get('/home', function(request, response) {
     //response.render('pages/home');
     response.sendFile(path.join(__dirname+'/mainpage.html'));
 });
+app.get('/PrivacyPolicy', function(request, response) {
+    //response.render('pages/home');
+    response.sendFile(path.join(__dirname+'/PrivacyPolicy.html'));
+});
+app.get('/TermOfService', function(request, response) {
+    //response.render('pages/home');
+    response.sendFile(path.join(__dirname+'/TermOfService.html'));
+});
 app.post('/home', function(request, response) {
     //response.render('pages/home');
     response.sendFile(path.join(__dirname+'/mainpage.html'));

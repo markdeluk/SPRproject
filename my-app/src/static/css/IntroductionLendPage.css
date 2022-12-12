@@ -1,8 +1,4 @@
-html, body {
-    height: 100%;
-    margin: 0;
-  }
-  .container{
+  .BigContainer{
     display: flex;
     flex-direction: column;
     margin : auto;
@@ -10,47 +6,7 @@ html, body {
     margin-top: 10%;
     gap: 100px;
     height: 100%;
-    width: 90%;
     
 }
-.firstLine{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-}
-.Icon{
-    width: 50px;
-    height: 50px;
-}
 
 
-.StartButton{
-    background: #FFFFFF;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid #000000;
-    border-radius: 43px;
-    width: 20%;
-    height: 5%;
-}
-.LineExplanation{
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-}
-.ExplanationContainer{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.Text{
-    display: flex;
-    font-size: 50px;
-}
-.SmallText{
-  display: flex;
-  font-size: 30px;
-}

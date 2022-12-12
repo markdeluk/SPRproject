@@ -10,4 +10,16 @@ html, body {
     margin-top: 20%;
     height: 100%;
 }
-  
+.BigContainer{
+    display: flex;
+    flex-direction: column;
+    margin : auto;
+    align-items: center;
+    margin-top: 10%;
+    gap: 100px;
+    height: 100%;
+    
+}
+.LeftGap{
+    margin-left: 5%;
+}

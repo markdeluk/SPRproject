@@ -24,6 +24,8 @@
   .VerticalContainer{
     display: flex;
     flex-direction: column;
+    width: 100%;
+    gap: 50px;
   }
   
   .ButtonsContainer{
@@ -95,6 +97,17 @@
     border-radius: 43px;
 }
 .SingleButtonContent{
+    margin: 20px;
+}
+/*Input Form*/
+.InputBox{
+    background: #FFFFFF;
+    border: 2px solid #000000;
+    border-radius: 15px;
+}
+.input{
+    width: 100%;
+    border: none;
     margin: 20px;
 }
 

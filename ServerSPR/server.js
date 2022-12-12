@@ -80,7 +80,7 @@ function base64_encode(file) {
         damage="text"
         ownerID=000
         city="horsens"
-        var sql = "INSERT INTO bikesinfo (ID, name,img_src, model, coordinates, dimension, wheel, damage,ownerID,city) VALUES (?,?,?,?,?,?,?,?,?,?)";
+        var sql = "INSERT INTO bikesinfo (ID,name,img_src, model, coordinates, dimension, wheel, damage,ownerID,city) VALUES (?,?,?,?,?,?,?,?,?,?)";
           /*
         con.query(sql,[id,name,Base64,model,coordinates,dimension,wheel,damage,ownerID,city],function (err, result) {
 

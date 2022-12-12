@@ -1,7 +1,13 @@
-.InputForm{
+.Button{
     background: #FFFFFF;
     border: 2px solid #000000;
-    border-radius: 15px;
+    border-radius: 43px;
+}
+.CaptureButton{
+
+    background: #FFFFFF;
+    border: 2px solid #00A3FF;
+    border-radius: 43px;
 }
 .LineExplanation{
     display: flex;
@@ -13,6 +19,7 @@
     flex-direction: column;
     gap: 20px;
 }
+
 html, body {
     height: 100%;
     margin: 0;
@@ -28,33 +35,26 @@ html, body {
     width: 90%;
     
 }
-.StartButton{
-  background: #FFFFFF;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #000000;
-  border-radius: 43px;
-  width: 20%;
-  height: 5%;
-}
-.firstLine{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-}
 .Icon{
     width: 50px;
     height: 50px;
 }
-
-/*TEXT FORMATTING */
-.Text{
+.firstLine{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .Text{
     display: flex;
     font-size: 40px;
   }
   .SmallText{
     display: flex;
     font-size: 30px;
+}
+.ButtonContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
 }

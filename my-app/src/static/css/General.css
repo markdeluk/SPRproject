@@ -1,0 +1,19 @@
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  .container{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top:70%;
+    left:2%;
+    width: 95%;
+    height: 26%;
+    background: #FFFFFF;
+    justify-content: center;
+    gap : 10%;
+    border: 2px solid #000000;
+    border-radius: 43px;
+  }
+  

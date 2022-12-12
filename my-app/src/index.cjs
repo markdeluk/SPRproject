@@ -38,7 +38,6 @@ app.post('/auth', function(request, response) {
     console.log('login '+ username + password)
     //console.log(__dirname)
     response.redirect('/home');
-    //response.sendFile(path.join(__dirname+'/mainpage.html'));
 });
 
 
@@ -46,16 +45,20 @@ app.get('/home', function(request, response) {
     //response.render('pages/home');
     response.sendFile(path.join(__dirname+'/mainpage.html'));
 });
+app.post('/home', function(request, response) {
+    //response.render('pages/home');
+    response.sendFile(path.join(__dirname+'/mainpage.html'));
+});
 
 
 app.post('/book', function(request, response) {
-    //console.log("Info from more detail:")
-   // console.log(request.body)
+    console.log("Info from more detail:")
     var bikeName = request.body['bikeName']
     var bikeDescription = request.body['bikeDescription']
     var bikeAddress = request.body['bikeAddress']
     var bikePrice = request.body['bikePrice']
     var bikeImg = request.body['bikeImg']
+    console.log(bikeName);
     response.render("bookPage",{bikename:bikeName,bikedescription:bikeDescription,bikeaddress:bikeAddress,bikeprice:bikePrice,bikeimg:bikeImg});
     //res.sendFile(path.join(__dirname+'/book.html'));
 });
@@ -125,7 +128,12 @@ app.post('/InputLendPage', function (request, response){
 app.post('/InputLockPage', function (request, response){
     response.sendFile(path.join(__dirname+'/InputLockPage.html'));
 });
-
+app.post('/InsertBikePicPage', function (request, response){
+    response.sendFile(path.join(__dirname+'/InsertBikePicPage.html'));
+});
+app.post('/SummaryPage', function (request, response){
+    response.sendFile(path.join(__dirname+'/SummaryPage.html'));
+});
 
 //TEST
 app.get('/PhotoCapture', function (request, response){
@@ -164,5 +172,11 @@ app.get('/InputLendPage', function (request, response){
 });
 app.get('/InputLockPage', function (request, response){
     response.sendFile(path.join(__dirname+'/InputLockPage.html'));
+});
+app.get('/InsertBikePicPage', function (request, response){
+    response.sendFile(path.join(__dirname+'/InsertBikePicPage.html'));
+});
+app.get('/SummaryPage', function (request, response){
+    response.sendFile(path.join(__dirname+'/SummaryPage.html'));
 });
 

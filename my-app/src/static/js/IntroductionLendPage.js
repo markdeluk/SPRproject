@@ -1,7 +1,7 @@
 var StartButton = document.getElementById('StartButton');
 StartButton.addEventListener('click',function(){InputLendDataPage()});
 
-var BackButton = document.getElementById('StartButton');
+var BackButton = document.getElementById('BackButton');
 BackButton.addEventListener('click',function(){BackPage()});
 
 function InputLendDataPage(){

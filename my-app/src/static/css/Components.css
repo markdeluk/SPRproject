@@ -1,0 +1,53 @@
+/*CONTAINERS*/
+
+
+.Line{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-right: 5%;
+
+  }
+  .infoColumn{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .ButtonsContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap : 5%;
+  }
+
+
+  /*COMPONENTS*/
+    /*BUTTONS*/
+  .ContentButton{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .Button{
+    width: 125px;
+    height: 160px;
+    background-color: white;
+    border: none;
+  }
+  .IconButton{
+    width: 113px;
+    height: 113px;
+  }
+
+  .blackLine{
+    width: 90%;
+    height: 0px;
+    border: 2px solid #000000;
+    margin-left: 5%;
+    
+  }
+  .Icon{
+    width: 30px;
+    height: 30px;
+  }

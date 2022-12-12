@@ -1,5 +1,5 @@
 var NextButton = document.getElementById('NextButton');
-StartButton.addEventListener('click',function(){InputLockPage()});
+NextButton.addEventListener('click',function(){InputLockPage()});
 
 var BackButton = document.getElementById('BackButton');
 BackButton.addEventListener('click',function(){BackPage()});

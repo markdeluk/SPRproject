@@ -7,73 +7,33 @@ let map = L.map('map', {
     center: [35.791188, -78.636755],
     zoom: 12
 });
+let RentButton = document.getElementById('RentButton');
+let LendButton = document.getElementById('LendButton');
+let InfoButton = document.getElementById('InfoButton');
+let MainContainer = document.getElementById('MainButtonContainer');
     
+LendButton.addEventListener('click', function(){LendPage()});
+InfoButton.addEventListener('click',function(){InfoPage();});
+function LendPage(){
+    console.log("Redirect to Lend Page");
+    var form = document.createElement('form');
+    form.setAttribute('method', 'post');
+    form.setAttribute('action', '/LendPage');
+    form.style.display = 'hidden';
+    document.body.appendChild(form)
+    form.submit();
+}
 
-    function runDirection(start, end,lat,lng) {
-        geocode = MQ.geocode().on('success', function(e) {
-            alert(geocode.describeLocation(e.result.best));
-        });
-        var JSONcoords = new Object();
-        JSONcoords.Lat = lat;
-        JSONcoords.Lng = lng;
-        geocode.reverse(JSONcoords);
-        
-        // recreating new map layer after removal
-        map = L.map('map', {
-            layers: MQ.mapLayer(),
-            center: [35.791188, -78.636755],
-            zoom: 12
-        });
-        
-        var dir = MQ.routing.directions();
+function InfoPage(){
+    console.log("Redirect to Lend Page");
+    var form = document.createElement('form');
+    form.setAttribute('method', 'post');
+    form.setAttribute('action', '/InfoPage');
+    form.style.display = 'hidden';
+    document.body.appendChild(form)
+    form.submit();
+}
 
-        dir.route({
-            locations: [
-                start,
-                end
-            ]
-        });
-    
-
-        CustomRouteLayer = MQ.Routing.RouteLayer.extend({
-            createStartMarker: (location) => {
-                var custom_icon;
-                var marker;
-
-                custom_icon = L.icon({
-                    iconUrl: 'img/red.png',
-                    iconSize: [20, 29],
-                    iconAnchor: [10, 29],
-                    popupAnchor: [0, -29]
-                });
-
-                marker = L.marker(location.latLng, {icon: custom_icon}).addTo(map);
-
-                return marker;
-            },
-
-            createEndMarker: (location) => {
-                var custom_icon;
-                var marker;
-
-                custom_icon = L.icon({
-                    iconUrl: 'img/blue.png',
-                    iconSize: [20, 29],
-                    iconAnchor: [10, 29],
-                    popupAnchor: [0, -29]
-                });
-
-                marker = L.marker(location.latLng, {icon: custom_icon}).addTo(map);
-
-                return marker;
-            }
-        });
-        
-        map.addLayer(new CustomRouteLayer({
-            directions: dir,
-            fitBounds: true
-        })); 
-    }
 //function that load images and related data inside the result table
 
 // function that runs when form submitted
@@ -85,6 +45,7 @@ function submitForm(event) {
     end = document.getElementById("destination").value;
     //request bikes nearby your position, for now it's only the same city
     socket.emit("getBikes",end);
+    MainContainer.style.visibility = 'hidden'
     var ResultTableContainer= document.getElementById("ResultTableContainer");
     var searchBar = document.getElementById("searchBar");
     ResultTableContainer.style.visibility='visible';
@@ -238,7 +199,7 @@ form.addEventListener('submit', submitForm);
       //name
       var divName=document.createElement("div");
       var name = document.createElement('label');
-      divName.id="BikeName"
+      divName.id="BikeNameTEST";
       name.innerHTML =  msg[ID]['name'];
       divName.appendChild(name);
       divName.classList.add("BikeName_MoreInfo");
@@ -366,7 +327,7 @@ form.addEventListener('submit', submitForm);
   }
   function BookPage() {
     
-    var bikeName=document.getElementById("BikeName");
+    var bikeName=document.getElementById("BikeNameTEST");
     var bikeDescription=document.getElementById("BikeDescription");
     var bikeAddress=document.getElementById("BikeAddress")
     var bikePrice=document.getElementById("BikePrice")
@@ -424,16 +385,7 @@ form.addEventListener('submit', submitForm);
     form.submit();
     
 
-    /*
-    var bikeName=document.getElementById("BikeName").firstChild.textContent
-    console.log("bikename"+bikeName)
-    $.post("/book",
-  {
-    name: bikeName,
-    city: "Duckburg"
-  }
-  );
-    */
+
 }
 
 

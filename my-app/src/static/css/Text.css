@@ -1,0 +1,19 @@
+@font-face {
+    font-family: IBM_Plex_Sans;
+    src: url(Fonts/IBM_Plex_Sans/IBMPlexSans-Regular.ttf);
+  }
+
+
+.Text{
+    display: flex;
+    font-size: 50px;
+    font-family: IBM_Plex_Sans;
+  }
+  .SmallText{
+    display: flex;
+    font-size: 30px;
+    font-family: IBM_Plex_Sans;
+  }
+  .Selected {
+    color: #00A3FF;
+  }

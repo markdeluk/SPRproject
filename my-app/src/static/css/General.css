@@ -16,9 +16,11 @@ html, body {
     flex-direction: column;
     margin : auto;
     align-items: center;
-    gap: 60px;
     height: 100%;
     
+}
+.smallGap{
+    gap: 30px;
 }
 .LeftGap{
     margin-left: 5%;
@@ -28,4 +30,5 @@ html, body {
     justify-content: center;
     align-items: center;
     text-align: center;
+    width: 100%;
 }

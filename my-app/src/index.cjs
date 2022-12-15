@@ -2,6 +2,13 @@ var express = require('express');
 var app = express();
 var bodyParser = require("body-parser"); 
 const session = require('express-session');
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = require("socket.io-client");
+const socket = io("http://LAPTOP-7M6U6UFG:4000", {
+    withCredentials: true
+    }, {secure: true});
 const path = require('path');
 const router = express.Router();
 //initialization
@@ -11,6 +18,9 @@ app.use(session({
 	saveUninitialized: true
 }));
 
+//credentials of the user
+let username;
+let password;
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false,limit: '50mb' }));
@@ -35,9 +45,26 @@ app.post('/auth', function(request, response) {
     //response.render('pages/home');
     var username = request.body.username;
 	var password = request.body.password;
-    console.log('login '+ username + password)
+    console.log('login '+ username + password);
+    socket.emit('checkLogin',{username:username,password:password});
     //console.log(__dirname)
+    socket.on('LoginResult',function(msg){
+        console.log(msg);
+        response.redirect('/home');
+    });
     response.redirect('/home');
+});
+app.post('/registerUser', function(request, response) {
+    //response.render('pages/home');
+    var username = request.body.username;
+	var password = request.body.password;
+    console.log("DATA RECEIVED FROM HTML" + username + password);
+    socket.emit('insertUser',{username:username,password:password});
+    //console.log(__dirname)
+    socket.on('insertUserResult',function(msg){
+        console.log(msg);
+        response.redirect('/home');
+    });
 });
 
 
@@ -57,7 +84,29 @@ app.post('/home', function(request, response) {
     //response.render('pages/home');
     response.sendFile(path.join(__dirname+'/mainpage.html'));
 });
-
+app.post('/reserve', function(request, response) {
+    console.log("Info from more detail:")
+    var bikeName = request.body['bikeName']
+    var bikeDescription = request.body['bikeDescription']
+    var bikeAddress = request.body['bikeAddress']
+    var bikePrice = request.body['bikePrice']
+    var bikeImg = request.body['bikeImg'];
+    let BID = request.body['BID'];
+    let reservationAmount = request.body['reservationAmount'];
+    //request to the server Price data
+    socket.emit('getPrices',BID);
+    console.log(bikeName);
+    socket.on('PricesResult',function(msg){
+        console.log(msg);
+        let costDay = msg[0]['costDay'];
+        let costWeek = msg[0]['costWeek'];
+        let costMonth = msg[0]['costMonth'];
+        let tax = msg[0]['taxesPercentage'];
+        console.log("PRICES",costDay,costWeek,costMonth,tax);
+        response.render("reservationPage",{BID:BID,bikename:bikeName,bikedescription:bikeDescription,bikeaddress:bikeAddress,bikeprice:bikePrice,bikeimg:bikeImg,costDay:costDay,costMonth:costMonth,costWeek:costWeek,tax:tax,reservationAmount:reservationAmount});
+    })
+    //res.sendFile(path.join(__dirname+'/book.html'));
+});
 
 app.post('/book', function(request, response) {
     console.log("Info from more detail:")
@@ -65,9 +114,21 @@ app.post('/book', function(request, response) {
     var bikeDescription = request.body['bikeDescription']
     var bikeAddress = request.body['bikeAddress']
     var bikePrice = request.body['bikePrice']
-    var bikeImg = request.body['bikeImg']
+    var bikeImg = request.body['bikeImg'];
+    let BID = request.body['BID'];
+    let reservationAmount = request.body['reservationAmount'];
+    //request to the server Price data
+    socket.emit('getPrices',BID);
     console.log(bikeName);
-    response.render("bookPage",{bikename:bikeName,bikedescription:bikeDescription,bikeaddress:bikeAddress,bikeprice:bikePrice,bikeimg:bikeImg});
+    socket.on('PricesResult',function(msg){
+        console.log(msg);
+        let costDay = msg[0]['costDay'];
+        let costWeek = msg[0]['costWeek'];
+        let costMonth = msg[0]['costMonth'];
+        let tax = msg[0]['taxesPercentage'];
+        console.log("PRICES",costDay,costWeek,costMonth,tax);
+        response.render("bookPage",{bikename:bikeName,bikedescription:bikeDescription,bikeaddress:bikeAddress,bikeprice:bikePrice,bikeimg:bikeImg,costDay:costDay,costMonth:costMonth,costWeek:costWeek,tax:tax,reservationAmount:reservationAmount});
+    })
     //res.sendFile(path.join(__dirname+'/book.html'));
 });
 
@@ -187,4 +248,7 @@ app.get('/InsertBikePicPage', function (request, response){
 app.get('/SummaryPage', function (request, response){
     response.sendFile(path.join(__dirname+'/SummaryPage.html'));
 });
+
+
+
 

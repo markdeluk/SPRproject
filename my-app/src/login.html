@@ -6,23 +6,25 @@
         <link rel="stylesheet" href="css/Text.css">
   </head>
     <body class="Background">
-      <form action="/auth" method = "post">
       <div class="container centered " id="Background">
             <div class="smallContainer">
               <input type="text" class="InputBox MediumText" placeholder="E-Mail" name="username" id="username" required style=""/>
               <input type="password" class="InputBox MediumText" placeholder="Password" name="password" id="password" required/>
               <div class="Line center">
-                <button class="SingleButton">
+                <button class="SingleButton" id = "LoginButton">
                   <div class="Text SingleButtonContent">Login</div>
                 </button>
-                <button class="SingleButton">
+                <button class="SingleButton" id = "RegisterButton">
                   <div class="Text SingleButtonContent">Register</div>
                 </button>
               </div>
             </div>
 
           </div>
-          
+          <script src="https://cdn.socket.io/4.5.3/socket.io.min.js" integrity="sha384-WPFUvHkB1aHA5TDSZi6xtDgkF0wXJcIIxXhC6h8OT8EH3fC5PWro5pWJ1THjcfEi" crossorigin="anonymous"></script>
+          <script src='js/login.js'></script> 
+ 
+
         
           
     </body>

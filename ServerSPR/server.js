@@ -14,7 +14,6 @@ var mysql = require('mysql');
 //instantiate database connection
 var con = mysql.createConnection({
 host: "LAPTOP-7M6U6UFG",
-//host: "10.21.11.214",
 user: "marco",
 password: "marcolino2002",
 database: "spr"
@@ -35,60 +34,136 @@ io.on('connection', (socket) => {
   var clientIp = socket.request.connection.remoteAddress;
   console.log("connection from "+ socketId +" "+clientIp)
     socket.on('getBikes', (msg) => {
-        //console.log('message: ' + msg);
         ///connect to the database and retrieve the wanted image
 
         con.connect(function(err){
           //SELECT all bikes from the selected city
-          var sql="SELECT *FROM bikesinfo WHERE city=?";
+          var sql="SELECT  bytearray, latitude, longitude, bike.BID, ownerUID, name, bike.type, notes, model, size, wheels, initialPosID, status, isDamaged, lastUsage, lastPosID, lockingCode, city \
+                    FROM bike,image,position WHERE city=? AND bike.BID = image.BID AND position.posID = bike.lastPosID";
           con.query(sql,[msg],function (err, result) {
 
             if (err) throw err;
-            //console.log("1 record retrieved");
-            //console.log(result);
+            console.log("RESULTS"+ result);
+            let rows = JSON.parse(JSON.stringify(result));
+            
+            console.log(rows);
             //send the result to the client
-            socket.emit("sendBikesResult",result);
+            socket.emit("sendBikesResult",rows);
           });
         });
       });
+      socket.on('getPrices',(msg) =>{
+        console.log("MSG GETPRICE" + msg);
+        let date_ob = new Date();
+        let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+        let year = date_ob.getFullYear();
+        let BID = msg;
+        //result = getCurrentPrices(msg,year,month);
+        con.connect(function(err){
+          con.beginTransaction(function(err){
+            var sql = " SELECT costDay, costWeek, costMonth, taxesPercentage\
+                        FROM Cost \
+                        WHERE monthNumber = ? AND year = ? AND BID = ?";
+            con.query(sql,[month,year,BID],function(err,result){
+              let rows = JSON.parse(JSON.stringify(result));
+              console.log(rows);
+              socket.emit('PricesResult',rows);
+            });
+          });
+        });
+      });
+    socket.on('checkLogin',(msg) =>{
+      //console.log('login '+ username + password);
+      result = checkLoginCredentials(msg.username,msg.password);
+      socket.emit('Result',result);
+    });
+    socket.on('insertUser',(msg) =>{
+      //TODO: add function that enable the user to create this fields when he clicks on register
+      result = InsertUser(msg.username,msg.password,"NULL","NULL","NULL");
+      socket.emit('insertUserResult',result);
+    });
   });
   
-// function to encode file data to base64 encoded string
-function base64_encode(file) {
-  return new Buffer(file).toString('base64');
-}
 
 
 
 //server listen on this port
   server.listen(4000, () => {
-    console.log('listening on *:4000');
-    
-    //convert image to binary data for mysql
-    fs.readFile('./img/bike2.jpg', function(err, data) {
-      if (err) throw err // Fail if the file can't be read.
-      var Base64=base64_encode(data);
-      con.connect(function(err) {
-        if (err) throw err;
-        console.log("Connected!");
-        id=000
-        name="test"
-        model="testmodel"
-        coordinates="0.000;0.000"
-        dimension="20x20x20"
-        wheel=20
-        damage="text"
-        ownerID=000
-        city="horsens"
-        var sql = "INSERT INTO bikesinfo (ID,name,img_src, model, coordinates, dimension, wheel, damage,ownerID,city) VALUES (?,?,?,?,?,?,?,?,?,?)";
-          /*
-        con.query(sql,[id,name,Base64,model,coordinates,dimension,wheel,damage,ownerID,city],function (err, result) {
-
-            if (err) throw err;
-            console.log("1 record inserted");
-          });
-*/
-        });
-    })
-    
+    console.log('listening on *:4000');    
   });
+  function InsertUser(username,password,name,surname,mail){
+    let statusQuery = "SUCCESS";
+    con.connect(function(err){
+          //INSERT INTO CREDENTIALS LAST LOGIN
+          var sql=" INSERT INTO CREDENTIALS (USERNAME,PASSWORD) VALUES (?,?);";
+          con.query(sql,[username,password],function (err, result) {
+
+            if (err) {
+               statusQuery = "FAILED";
+              throw err;
+            }
+          });
+        });
+        //GET NUMBER OF CURRENT USERS
+        var sql = "SELECT COUNT(*) AS NUMBERUSER FROM USER";
+        con.query(sql,function (err,result){
+          if (err){
+            statusQuery = "FAILED"
+          }
+          let rows = JSON.parse(JSON.stringify(result[0]));
+          let numberUser = parseInt(rows['NUMBERUSER']) + 1;
+           //CREATE USER INSIDE USER TABLE
+          sql = "INSERT INTO USER (UID,name,surname,mail) VALUES (?,?,?,?)";
+          con.query(sql,[numberUser,name,surname,mail],function (err, result) {
+
+            if (err) {
+               statusQuery = "FAILED";
+              throw err;
+            }
+          });
+          //PUT LINE INSIDE LOGIN
+          sql = "INSERT INTO LOGIN (UID,USERNAME) VALUES (?,?)"
+          con.query(sql,[numberUser,username],function(err,result){
+            if (err) {
+              statusQuery = "FAILED";
+             throw err;
+           }
+          })
+
+        });
+    return{status:statusQuery,result:""}
+  }
+
+  function checkLoginCredentials(username,password){
+    let statusQuery;
+    con.connect(function(err){
+      //check if user has been created
+      con.beginTransaction(function(err){
+      var sql="SELECT COUNT(*) AS NUMBERLOGIN FROM Credentials WHERE username = ? AND password = ?;";
+      con.query(sql,[username,password],function (err, result) {
+
+        if (err) {
+          statusQuery = "FAILED";
+          throw err;
+        }
+        let rows = JSON.parse(JSON.stringify(result[0]));
+        let numberLogin = parseInt(rows['NUMBERLOGIN']);
+        return{status:statusQuery,result:numberLogin};
+      });
+      });
+    });
+  }
+  function getCurrentPrices(BID,year,month){
+    con.connect(function(err){
+      con.beginTransaction(function(err){
+        var sql = " SELECT costDay, costWeek, costMonth, taxesPercentage\
+                    FROM Cost \
+                    WHERE monthNumber = ? AND year = ? AND BID = ?";
+        con.query(sql,[month,year,BID],function(err,result){
+          let rows = JSON.parse(JSON.stringify(result));
+          console.log(rows);
+          return rows;
+        });
+      });
+    });
+  }

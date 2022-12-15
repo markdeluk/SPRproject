@@ -9,25 +9,24 @@
   margin-top: 180px;
 }
 
-
-
 .bikeOption{
   display: block;
 }
 
 .results {
   display: flex;
+  flex-direction: column;
   max-width: 90%;
-  height: 90%;
+  height: 53%;
   width: 90%;
   border-radius: 59.5px;
   border-color: rgba(0, 0, 0, 1);
   border-width: 2px;
   border-style: solid;
   background-color: rgba(255, 255, 255, 1);
-  top:5%;
+  top:45%;
   position:absolute;
-  overflow: hidden;
+  overflow: scroll;
   visibility: hidden;
   left:5%;
   z-index:2;
@@ -54,19 +53,8 @@
 
 
 
-.ResultsTable{
-  height: 100%;
-  width:100%;
-  overflow-y: scroll;
-  z-index:1;
-}
-.StyleTable{
-  width: 100%;
-  height:100%;
-  z-index:1;
-  overflow-y: scroll;
-  position:absolute;
-}
+
+
 
 .StyleInfoTable{
   width: 100%;
@@ -84,6 +72,13 @@
 }
 
 /*COMPONENTS*/
+
+.overlay{
+  position : absolute;
+}
+.topMap{
+  top:2%;
+}
 .searchBar {
   display: flex;
   flex-direction: row;
@@ -140,8 +135,6 @@ margin-right: 5%;
           'model model model button'
           'Picture Picture Picture Picture';
         grid-auto-columns: 1fr; 
-        width: 100%;
-        height: 100%;
         grid-template-columns: 0.25fr 0.25fr 0.25fr  0.25fr; 
         grid-template-rows: 0.05fr 0.05fr 0.05fr 0.70fr; 
         gap: 0px 0px; 
@@ -193,7 +186,12 @@ STYLE FOR MORE INFO ABOUT A SPECIFIC BIKE
 
 .ShareButton_MoreInfo { grid-area: SHARE; }
 
-.BikeName_MoreInfo { grid-area: NAME; }
+.BikeName_MoreInfo {
+   grid-area: NAME;
+   display: flex;
+   flex-direction: row;
+   justify-content: flex-start;
+                       }
 
 .BikeDescription_MoreInfo { grid-area: DESCRIPTION; }
 
@@ -209,7 +207,7 @@ STYLE FOR MORE INFO ABOUT A SPECIFIC BIKE
 
 .BookButton_MoreInfo{ grid-area: BOOK-NOW; }
 
-.ReserveButton_MoreInfo { grid-area: RESERVE;width: 100%; height: 100%;}
+.ReserveButton_MoreInfo { grid-area: RESERVE;}
 
 
     

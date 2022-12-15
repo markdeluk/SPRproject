@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="css/Components.css">
+        <link rel="stylesheet" href="css/General.css">
+        <link rel="stylesheet" href="css/Text.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="MediumText">Reserve the bike for</div>
+            <div class="optionFrame">
+                <button class="plusButton" " id="plusButton">+</button>
+                <div class="MediumText" id = "ReservationTime"></div>
+                <button class="minusButton"  id="minusButton">-</button>
+            </div>
+            <button class="SingleButton" id ="ReserveButton">
+                <div class="MediumText SingleButtonContent">Reserve</div>
+            </button>
+        </div>
+        <script crossorigin="anonymous">
+            let BID = "<%=BID%>";
+            let reservationAmount= "<%=reservationAmount%>";
+            let bikeName = "<%= bikename %>";
+            let bikeDescription = "<%= bikedescription %>";
+            let bikeAddress = "<%= bikeaddress %>";
+            let bikePrice = "<%= bikeprice %>";
+            let base64 = "<%= bikeimg %>";
+        </script>
+        <script src='js/reservationPage.js'></script>
+    </body>
+</html>

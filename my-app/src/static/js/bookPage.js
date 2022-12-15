@@ -5,16 +5,12 @@
 
 
 /////////////these variables should get a dinamic value retrieved by the server
-var dayPrice = 10;
-var weekPrice = 20;
-var monthPrice = 100;
+
 var counterDays = 1;
 var counterWeeks = 0;
 var counterMonths = 0;
 var RentalTotalAmount = 0;
-var ReservationAmount = 0;
 var AdditionalCostAmount = 0;
-var TaxesAmount = 0;
 var TotalAmount = 0;
 var TimeAmount = "";
 //Price is already calculated to display something at the beginning
@@ -68,11 +64,9 @@ monthButton.addEventListener("click",function(){monthActivate();});
 
 
 function PaymentPage(paymentMethod){
-    console.log(paymentMethod);
     var form = document.createElement('form');
     form.setAttribute('method', 'post');
     var route = '/'+paymentMethod;
-    console.log('route '+ route);
     form.setAttribute('action', route);
     var inputTotalAmount=document.createElement('input');
     inputTotalAmount.setAttribute("type", "text");
@@ -92,8 +86,15 @@ function PaymentPage(paymentMethod){
 }
 
 function updateLabelValues(){
+    console.log("UPDATE")
     RentalTotalAmount = dayPrice*counterDays + weekPrice*counterWeeks + monthPrice*counterMonths;
-    TotalAmount= RentalTotalAmount + RentalTotalAmount + AdditionalCostAmount + TaxesAmount;
+    console.log(TaxesAmount);
+    console.log("RESERVATION AMOUNT",ReservationAmount);
+    console.log("RENTAL", RentalTotalAmount);
+    console.log("taxes", (1+TaxesAmount/100));
+    console.log("TOTBEFORE",(RentalTotalAmount + ReservationAmount + AdditionalCostAmount));
+    TotalAmount= (parseInt(RentalTotalAmount) + parseInt(ReservationAmount) + parseInt(AdditionalCostAmount)) *(1+TaxesAmount/100);
+    console.log("TOTAL",TotalAmount);
     BikeRentalAmount.innerHTML = RentalTotalAmount;
     TimeAmountLabel.innerHTML = " "+TimeAmount;
     AdditionalCostAmountLabel.innerHTML = AdditionalCostAmount;
@@ -126,7 +127,6 @@ function addQuantity(element){
 function removeQuantity(element){
     //get the name of the element and use it to identify the button among the option frames
     var ID = element.attributes["name"].value;
-    var TimeAmount = "";
     if (ID == 'day'){
         dayActivate();
         if(counterDays>0){
@@ -134,7 +134,6 @@ function removeQuantity(element){
             
         }
         TimeAmount=counterDays.toString()+" "+ID+ "(s)";
-        console.log("contatore giorni "+ counterDays);
     }
     else if (ID == 'week'){
         weekActivate();
@@ -158,7 +157,6 @@ function removeQuantity(element){
 function dayActivate(){
     counterWeeks = 0;
     counterMonths = 0;
-    console.log('day clicked');
     changeStatus(monthButton,false);
     changeStatus(weekButton,false);
     changeStatus(dayButton,true);
@@ -166,7 +164,6 @@ function dayActivate(){
 function weekActivate(){
     counterDays = 0;
     counterMonths = 0;
-    console.log('week clicked');
     changeStatus(monthButton,false);
     changeStatus(weekButton,true);
     changeStatus(dayButton,false);
@@ -174,14 +171,12 @@ function weekActivate(){
 function monthActivate(){
     counterDays = 0;
     counterWeeks = 0;
-    console.log('month clicked');
     changeStatus(monthButton,true);
     changeStatus(weekButton,false);
     changeStatus(dayButton,false);
 }
 //function that changes css and status of the element
 function changeStatus(element,status){
-    console.log('Element ID :'+ element.id);
     //change status of button
     if (element.id = 'dayButton'){
         dayButtonStatus = status;
@@ -199,26 +194,21 @@ function changeStatus(element,status){
     else{
         color = "rgb(0, 163, 255)";  
     }
-    console.log('color:'+ color);
     var optionFrames = document.getElementsByClassName('optionFrame');
     var minusButtons = document.getElementsByClassName('minusButton');
     var plusButtons = document.getElementsByClassName('plusButton');
     var selectedOptions =  document.getElementsByClassName('selectedOption');
     //set minus. plus and border of the right color
-    console.log("length optionframes"+optionFrames.length);
         for (var i=0;i < optionFrames.length;i++){
-            console.log("id option frame"+optionFrames[i].attributes["name"].value +" "+element.name)
             if (optionFrames[i].attributes["name"].value== element.name){
                 optionFrames[i].style.borderColor = color;
                 minusButtons[i].style.color = color;
                 plusButtons[i].style.color = color;
                 //set also the color of the status
                 if (status == false){
-                    console.log("deactivated")
                     selectedOptions[i].style.backgroundImage = "url('../css/imgs/statusnotSelected.png')";
                 }
                 else{
-                    console.log("activated")
                     selectedOptions[i].style.backgroundImage = "url('../css/imgs/statusSelected.png')";
                 }
                 break;

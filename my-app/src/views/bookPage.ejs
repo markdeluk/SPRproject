@@ -1,38 +1,41 @@
 <html>
 <head>
     <link rel='stylesheet' type='text/css' media='screen' href='css/bookPage.css'>
+    <link rel="stylesheet" href="css/Components.css">
+        <link rel="stylesheet" href="css/General.css">
+        <link rel="stylesheet" href="css/Text.css">
 </head>
 <body>
-    <div class="container">
-        <div class="Front">
-
-            <div class="backButton">
-                <button class="backB"></button>
-            </div>
-            <div class="GoBackLabel">
-                <div class="Title">Go Back</div>
-            </div>
+    <div class="BigContainer smallGap">
+        <div class="Line space_between">
+            <button id = "BackButton" class="SingleButton">
+                <img src="css/imgs/left_arrow.png" class="BigIcon">
+                <div class="Text SingleButtonContent"style="font-size: 40px;" >Go Back</div>
+            </button>
             <div>
-                <div class="Title">Booking Summary</div>
-                <div class="Text">Review your booking before paying</div>
+                <div class="Text">Booking Summary</div>
+                <div class="SmallText">Review your booking before paying</div>
             </div>
         </div>
-        <div class="BikeInformationLabel">
-            <div class="Title"> Bike Information</div>
-            <div class="Text"> Name <%= bikename %> </div>
-            <div class="Text">Type, Model <%= bikedescription %> </div>
-            <div class="Text"> Address <%= bikeaddress %> </div>
+        <div class="Line space_between">
+            <div class="PictureFrame">
+                <img src='<%= bikeimg %>'class="PictureFrame" />
+            </div>
+            <div class="smallVerticalContainer">
+                <div class="SmallText"> Bike Information</div>
+                <div class="SmallText"> Name <%= bikename %> </div>
+                <div class="SmallText"> Description: </div>
+                <div class="SmallText"> <%= bikedescription %></div>
+                <div class="SmallText"> Address <%= bikeaddress %> </div>
+            </div>
         </div>
-        <div class="Picture">
-            <img src='<%= bikeimg %>' width="100%" height="100%" />
-        </div>
-        <div class="DurationLabel">
-            <div class="Title"> Duration of the Rental</div>
+        <div class="VerticalContainer">
+            <div class="Text"> Duration of the Rental</div>
             <div class="OptionMenu">
                 <div class="optionFrame" name="day" id ="dayOption">
                     <div class="selectTime">
                         <button class="selectedOption" name="day" id="daySelection"></button>
-                        <div>1 Day</div>
+                        <div class="Text">1 Day</div>
                     </div>
                     <div class="selectAmount">
                         <button class="plusButton" name="day" id="plusButton">+</button>
@@ -43,7 +46,7 @@
                 <div class="optionFrame" name="week" id ="weekOption">
                     <div class="selectTime">
                         <button class="selectedOption" name="week" id="weekSelection"></button>
-                        <div>1 Week</div>
+                        <div class="Text">1 Week</div>
                     </div>
                     <div class="selectAmount">
                         <button class="plusButton" name = "week" id="plusButton">+</button>
@@ -53,7 +56,7 @@
                 <div class="optionFrame" name="month" id = "monthOption">
                     <div class="selectTime">
                         <button class="selectedOption" name="month" id ="monthSelection" ></button>
-                        <div>1 Month</div>
+                        <div class="Text">1 Month</div>
                     </div>
                     <div class="selectAmount">
                         <button class="plusButton" name="month" id="plusButton">+</button>
@@ -62,72 +65,98 @@
                 </div>
             </div>
         </div>
-        <div class="CostLabel">
-            <div class="Title">Costs</div>
-            <div class = "CostDetailLabel">
-                <div>
-                    <img src="css/imgs/bikeIcon.png">
+        <div class="VerticalContainer">
+            <div class="Text">Costs</div>
+            <div class = "CostDetailLabel Line space_between">
+                <div class="Line">
+                    <img src="css/imgs/bikeIcon.png" class="BigIcon">
+                    <div class="Text">Bike Rental </div>
                 </div>
-                <div class="Text">Bike Rental </div>
-                <div class="Text" id = "BikeRentalLabel"></div>
-                <div class="Text" id = "AmountDetailLabel"></div>
+                <div class="Line fromEnd">
+                    <div class="Text" id = "AmountDetailLabel"></div>
+                    <div class="Text" id = "BikeRentalLabel"></div>
+                </div>
             </div>
             <div class = "CostDetailLabel">
-                <div>
-                    <object data="css/imgs/clockIcon.svg" width="40px" height="40px"> </object>
+                <div class="Line">
+                    <img src="css/imgs/clockIcon.png" class="BigIcon">
+                    <div class="Text">Reservation</div>
                 </div>
-                <div class="Text">Reservation</div>
                 <div class="Text" id = "ReservationAmountLabel"></div>
             </div>
             <div class = "CostDetailLabel">
-                <div>
-                    <object data="css/imgs/additionalCostIcon.svg" width="40px" height="40px"> </object>
+                <div class="Line">
+                    <img src="css/imgs/additionalCostIcon.png" class="BigIcon">
+                    <div class="Text">Additional Costs</div>
                 </div>
-                <div class="Text">Additional Costs</div>
                 <div class="Text" id = "AdditionalCostAmountLabel"></div>
             </div>
             <div class = "CostDetailLabel">
-                <div>
-                    <img src="css/imgs/taxes.png">
+                <div class="Line">
+                    <img src="css/imgs/taxes.png" class="BigIcon">
+                    <div class="Text">Taxes</div>
                 </div>
-                <div class="Text">Taxes</div>
                 <div class="Text" id = "TaxesAmountLabel"></div>
             </div>
             
         </div>
-        <div class="TotalCost">
+        <div class="blackLine"></div>
+        <div class="Line space_between">
             <div class="Text">Total Cost</div>
             <div class="Text" id = 'TotalCostAmountLabel'></div>
         </div>
-        <div class="PrivacyLabel">
-            <div class="Text">By paying, you accept our Term of Service. <br>
-                See our Privacy Policy for more details </div>
+        <div class="VerticalContainer">
+            <div class="SmallText">Every personal and/or sensible information is stored securely on</div>
+            <div class="SmallText">our database system.</div>
+            <div class="Line">
+                <div class="SmallText">By proceeding, you accept our </div> <a href="/PrivacyPolicy" target="_blank" class="SmallText">Terms of service.</a><br>
+            </div>
+            <div class="Line">
+                <div class="SmallText">See our </div><a  href="/PrivacyPolicy" target="_blank"class="SmallText"> Privacy policy</a> <div class="SmallText">for more details.</div>
+            </div>    
         </div>
-        <div class="PaymentMethod">
             <div class="PaymentMethodContainer">
                 <div >
-                    <button class="PayPalButton" id="Paypal"></button>
+                    <button class="PaymentButton BlueButton" id="Paypal">
+                        <img src="css/imgs/paypalIcon.png" class="BigIcon">
+                    </button>
                 </div>
                 <div >
-                    <button class="googlePayButton" id="GooglePay"></button>
+                    <button class="PaymentButton" id="GooglePay">
+                        <img src="css/imgs/googlePayIcon.png" class="BigIcon">
+                    </button>
                 </div>
                 <div >
-                    <button class="applePayButton" id="ApplePay"></button>
+                    <button class="PaymentButton" id="ApplePay">
+                        <img src="css/imgs/applePayIcon.png" class="BigIcon">
+                    </button>
                 </div>
                 <div >
-                    <button class="VisaPayButton" id="MobilePay"></button>
+                    <button class="PaymentButton" id="MobilePay">
+                        <img src="css/imgs/mobilePayIcon.png" class="BigIcon">
+                    </button>
                 </div>
                 <div >
-                    <button class="VisaButton" id="Visa"></button>
+                    <button class="PaymentButton" id="Visa">
+                        <img src="css/imgs/visaButton.png" class="BigIcon">
+                    </button>
                 </div>
                 <div >
-                    <button class="mastercardButton" id="Mastercard"></button>
+                    <button class="PaymentButton" id="Mastercard">
+                        <img src="css/imgs/mastercardIcon.png" class="BigIcon">
+                    </button>
                 </div>
-                <div id="PayButton" class="Text">Pay</div>
+                <div id="PayButton" class="Text White">Pay</div>
             </div>
-        </div>
       </div>
       <script src="https://cdn.socket.io/4.5.3/socket.io.min.js" integrity="sha384-WPFUvHkB1aHA5TDSZi6xtDgkF0wXJcIIxXhC6h8OT8EH3fC5PWro5pWJ1THjcfEi" crossorigin="anonymous"></script>
+      <script crossorigin="anonymous">
+        let ReservationAmount = "<%=reservationAmount%>"
+        var dayPrice = "<%= costDay %>";
+        var weekPrice = "<%= costWeek %>";
+        var monthPrice = "<%= costMonth %>";
+        var TaxesAmount = "<%= tax %>";
+      </script>
       <script src='js/bookPage.js'></script>
 </body>
 </html>

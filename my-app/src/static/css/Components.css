@@ -15,6 +15,9 @@
   .center{
     justify-content: center;
   }
+  .fromEnd{
+    justify-content: flex-end;
+  }
   .infoColumn{
     display: flex;
     flex-direction: column;
@@ -24,7 +27,14 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 50px;
+    gap: 10px;
+  }
+  .smallVerticalContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    gap: 10px;
   }
   
   .ButtonsContainer{
@@ -83,6 +93,7 @@
     width: 150px;
     height: 160px;
     background-color: white;
+    color: #000000;
     border: none;
   }
   .IconButton{
@@ -102,13 +113,50 @@
 }
 .BlueButton{
   background: #00A3FF;
-  border-color: #00A3FF;
+  border-color: #697780;
   border-radius: 43px;
 }
 
 .SingleButtonContent{
     margin: 20px;
 }
+
+.optionFrame{
+  display: flex;
+  height: 70px;
+  width: 100%;
+  border-radius: 43px;
+  border-color: rgba(128, 128, 128, 1);
+  border-width: 2px;
+  border-style: solid;
+  background-color: rgba(255, 255, 255, 1);
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.plusButton{
+  width: 60px;
+  height: 60px;
+  color: rgba(128, 128, 128, 1);
+  background-color: white;
+  font-size: 35px;
+  border: none;
+}
+
+
+.minusButton{
+  width: 60px;
+  height: 60px;
+  color: rgba(128, 128, 128, 1);
+  background-color: white;
+  font-size: 35px;
+  border: none;
+
+}
+
+
+
+
 /*Input Form*/
 .InputBox{
     background: #FFFFFF;
@@ -138,13 +186,24 @@
     height: 300px;
     width: 450px;
     overflow: hidden;
-    -webkit-transform: translateZ(0)
+   /* -webkit-transform: translateZ(0);*/
+   transform: translateZ(0);
+}
+
+.BigPictureFrame{
+  border-radius: 30px;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+ /* -webkit-transform: translateZ(0)*/
+ transform: translateZ(0);
 }
 .videoContainer{
     border-radius: 30px;
     height: 300px;
     width: 450px;
-    -webkit-transform: translateZ(0)
+    /*-webkit-transform: translateZ(0)*/
+    transform: translateZ(0);
 }
 
 

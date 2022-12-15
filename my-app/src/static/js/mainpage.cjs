@@ -11,9 +11,32 @@ let RentButton = document.getElementById('RentButton');
 let LendButton = document.getElementById('LendButton');
 let InfoButton = document.getElementById('InfoButton');
 let MainContainer = document.getElementById('MainButtonContainer');
-    
+var ResultTableContainer= document.getElementById("ResultTableContainer");
+var MainButtonContainer = document.getElementById('MainButtonContainer');
+let InfoTableContainer = document.getElementById('InfoTableContainer');
+var divButton=document.createElement("div");
+var backButton = document.createElement("button");
+backButton.style.visibility = 'hidden';
+backButton.classList.add("SingleButton","topMap","overlay");
+divButton.classList.add('MediumText','SingleButtonContent');
+divButton.innerHTML = "Back";
+document.body.appendChild(backButton);
+backButton.appendChild(divButton);
+
+let geocode = MQ.geocode().on('success', function(e) {
+    let addressLabel = document.getElementById('AddressLabel');
+    addressLabel.innerHTML = geocode.describeLocation(e.result.best);
+  });   
 LendButton.addEventListener('click', function(){LendPage()});
 InfoButton.addEventListener('click',function(){InfoPage();});
+backButton.addEventListener('click',BackToFirstScreen);
+//function that restore mainpage to 'search' state
+function BackToFirstScreen(){
+    ResultTableContainer.style.visibility='hidden';
+    searchBar.style.visibility='visible';
+    backButton.style.visibility = 'hidden';
+    MainButtonContainer.style.visibility = 'visible';
+}
 function LendPage(){
     console.log("Redirect to Lend Page");
     var form = document.createElement('form');
@@ -29,6 +52,7 @@ function InfoPage(){
     var form = document.createElement('form');
     form.setAttribute('method', 'post');
     form.setAttribute('action', '/InfoPage');
+    backButton.removeEventListener('click',BackToFirstScreen);
     form.style.display = 'hidden';
     document.body.appendChild(form)
     form.submit();
@@ -46,11 +70,9 @@ function submitForm(event) {
     //request bikes nearby your position, for now it's only the same city
     socket.emit("getBikes",end);
     MainContainer.style.visibility = 'hidden'
-    var ResultTableContainer= document.getElementById("ResultTableContainer");
     var searchBar = document.getElementById("searchBar");
     ResultTableContainer.style.visibility='visible';
     //searchBar.style.visibility='hidden';
-    var ResultTable= document.getElementById("nearBikeResultTable");
    // loadData(ResultTable);
     // run directions function
     //runDirection(start, end);
@@ -74,32 +96,26 @@ form.addEventListener('submit', submitForm);
 
 
   // creating table for results
-  var ResultTable= document.getElementById("nearBikeResultTable");
+  //var ResultTable= document.getElementById("nearBikeResultTable");
   var searchBar = document.getElementById("searchBar");
-  //create frame on which i have more data about the bike
-  var MoreinfoTable= document.getElementById("InfoTable");
+
   // listener
   socket.on('sendBikesResult', (msg) => {
           var enc = new TextDecoder("utf-8");
       ////here
       var ResultTableContainer= document.getElementById("ResultTableContainer");
-      var InfoTableContainer= document.getElementById("InfoTableContainer");
       ResultTableContainer.style.visibility='visible';
       searchBar.style.visibility='hidden';
-      //ResultTableContainer.style.visibility='hidden';
-
-
+      backButton.style.visibility = 'visible';
+      //backButton.addEventListener("click",function(){backToMainTable()}); 
       //create bike container block for each bike
       for (var i=0;i<msg.length;i++){
-
-          // creating a table entry
-          var row = ResultTable.insertRow(i);
-          var cell = row.insertCell(0);
-          //cell.style.height ='1%';
-
           // creating image
           var image= new Image();
-          image.src = 'data:image/png;base64,'+enc.decode(msg[i]['img_src']);
+          console.log(msg[i]);
+          image.src = 'data:image/png;base64,'+msg[i]['bytearray'];
+          //console.log("OBJECTURL "+objectURL);
+          //image.src = objectURL;
           image.classList.add('PictureFrame')
 
           // Create bike container
@@ -115,17 +131,18 @@ form.addEventListener('submit', submitForm);
 
           //appendText from imcoming message
           var name = document.createElement('label');
-          name.classList.add('MediumText',"LeftGap","centered");
+          name.classList.add('MediumText',"LeftGap");
           name.innerHTML =  msg[i]['name'];
           divName.appendChild(name);
           
           var model = document.createElement('label');
+          console.log("model",msg[i]['model']);
           model.innerHTML =  msg[i]['model'];
           model.classList.add('MediumText',"LeftGap");
           divModel.appendChild(model); 
           
           var bikePosition = document.createElement('label');
-          bikePosition.innerHTML =  msg[i]['coordinates'];
+          bikePosition.innerHTML =  msg[i]['latitude'].toString() +" "+ msg[i]['longitude'].toString();
           bikePosition.classList.add('MediumText',"LeftGap");
           divPosition.appendChild(bikePosition);
 
@@ -136,7 +153,6 @@ form.addEventListener('submit', submitForm);
           bookButton.classList.add("bookButtonStyle","SingleButton");
           bookButton.appendChild(bookButtonLabel);
           bookButton.id=i;
-          console.log("before");
           console.log(msg);
           bookButton.addEventListener("click",function(){loadBikeSpecificInfo(msg,this.id)}); 
           divButton.appendChild(bookButton);
@@ -161,39 +177,37 @@ form.addEventListener('submit', submitForm);
           divContainer.appendChild(divName);
           
           //insert in result table
-          cell.appendChild(divContainer);
+          ResultTableContainer.appendChild(divContainer);
 
           
 
       }
   });
+
   //function to load Table for specific info about a certain bike
   function loadBikeSpecificInfo(msg,ID){
 
       InfoTableContainer.style.visibility='visible';
       ResultTableContainer.style.visibility='hidden';
+      backButton.addEventListener('click',backToMainTable, { once: true });
       var rowInfoTable = InfoTable.insertRow(0);
       var cellInfoTable = rowInfoTable.insertCell(0);
       var divContainer= document.createElement("div");
           divContainer.classList.add("MoreInfoBikeContainer");
-      
+      console.log()
       //variables used to parse the JSON
       var PriceString = "10";
-      var DescriptionString = "ModelName" + "\n" + "TypeName";
+      var DescriptionString = msg[ID]['model'] + "\n" + msg[ID]['type'];
       var TimeString = "3 minutes";
       var AddressString = "Kamtjatka 13";
-      //coordinates management
-      var coordinates = "55.8634941,9.8354283";
-
-
-
+      let coordinate = {lat:msg[ID]['latitude'],lng:msg[ID]['longitude']};
 
       //image
       var enc = new TextDecoder("utf-8");
       var image= new Image();
-          image.src = 'data:image/png;base64,'+enc.decode(msg[ID]['img_src']);
-          image.style.height="100%";
-          image.style.width="100%";
+          image.src = 'data:image/png;base64,'+msg[ID]['bytearray'];
+          image.classList.add('BigPictureFrame');
+          
       var divPicture=document.createElement("div");
       divPicture.id="BikePic"
       divPicture.classList.add("BikePicture_MoreInfo");
@@ -203,15 +217,18 @@ form.addEventListener('submit', submitForm);
       //name
       var divName=document.createElement("div");
       var name = document.createElement('label');
+      name.classList.add("MediumText",'LeftGap');
       divName.id="BikeNameTEST";
+      name.style.width = '100%'
       name.innerHTML =  msg[ID]['name'];
       divName.appendChild(name);
-      divName.classList.add("BikeName_MoreInfo");
+      divName.classList.add("BikeName_MoreInfo","MediumText");
       divContainer.appendChild(divName);
 
       //price
       var divPrice = document.createElement("div");
       var Price = document.createElement('label');
+      Price.classList.add('MediumText','LeftGap','centered');
       Price.innerHTML= PriceString + "DKK";
       divPrice.appendChild(Price);
       divPrice.id="BikePrice"
@@ -222,6 +239,7 @@ form.addEventListener('submit', submitForm);
 
       var divDescription = document.createElement("div");
       var description = document.createElement('label');
+      description.classList.add('MediumText','LeftGap');
       divDescription.id="BikeDescription"
       description.innerHTML = DescriptionString;
       divDescription.appendChild(description);
@@ -231,10 +249,11 @@ form.addEventListener('submit', submitForm);
       //share button
       var divShareButton = document.createElement("div");
       var ShareButton = document.createElement("button");
-      ShareButton.style.height="100%"
-      ShareButton.style.width="100%"
-      ShareButton.innerHTML="Share"
-      ShareButton.classList.add("ShareButtonStyle"); //TODO: add style in CSS with the image
+      let ShareButtonLabel = document.createElement('div');
+      ShareButtonLabel.innerHTML="Share"
+      ShareButtonLabel.classList.add('MediumText','centered','SingleButtonContent');
+      ShareButton.appendChild(ShareButtonLabel);
+      ShareButton.classList.add("ShareButtonStyle",'SingleButton'); //TODO: add style in CSS with the image
       ShareButton.addEventListener("click", function(){shareOutsideApp()}); //TODO: implement function
       divShareButton.classList.add("ShareButton_MoreInfo");
       divShareButton.appendChild(ShareButton);
@@ -243,6 +262,7 @@ form.addEventListener('submit', submitForm);
       //time
       var divTime = document.createElement("div");
       var time = document.createElement('label');
+      time.classList.add('MediumText','LeftGap')
       time.innerHTML= TimeString;
       divTime.appendChild(time);
       divTime.classList.add("Time_MoreInfo");
@@ -252,6 +272,9 @@ form.addEventListener('submit', submitForm);
 
       var divAddress = document.createElement("div");
       var address = document.createElement('label');
+      address.id="AddressLabel";
+      address.classList.add('MediumText','LeftGap');
+      geocode.reverse(coordinate);
       address.innerHTML = AddressString;
       divAddress.appendChild(address);
       divAddress.id="BikeAddress"
@@ -262,10 +285,11 @@ form.addEventListener('submit', submitForm);
       
       var divScrollButton = document.createElement("div");
       var ScrollButton = document.createElement("button");
-      ScrollButton.innerHTML="Press for more info"
-      ScrollButton.style.height="100%"
-      ScrollButton.style.width="100%"
-      ScrollButton.classList.add("ScrollButtonStyle"); //TODO: add style in CSS with the image
+      let ScrollButtonLabel = document.createElement('div');
+      ScrollButtonLabel.classList.add('MediumText','centered','SingleButtonContent');
+      ScrollButtonLabel.innerHTML="Press for more info";
+      ScrollButton.appendChild(ScrollButtonLabel);
+      ScrollButton.classList.add('SingleButton'); //TODO: add style in CSS with the image
       ScrollButton.addEventListener("click", function(){showMoreInfo()}); //TODO: implement function, maybe some blocks of the grid are hidden?
       divScrollButton.classList.add("MoreInfoButton_MoreInfo");
       divScrollButton.appendChild(ScrollButton);
@@ -275,9 +299,12 @@ form.addEventListener('submit', submitForm);
 
       var divBookButton = document.createElement("div");
       var BookButton = document.createElement("button");
-      BookButton.innerHTML="Book"
-      BookButton.classList.add("BookButtonStyle"); //TODO: add style in CSS with the image
-      BookButton.addEventListener("click", function(){BookPage()}); //TODO: implement function,
+      let BookButtonLabel = document.createElement('div');
+      BookButtonLabel.classList.add('MediumText','centered','SingleButtonContent');
+      BookButtonLabel.innerHTML="Book";
+      BookButton.appendChild(BookButtonLabel);
+      BookButton.classList.add("BookButtonStyle",'SingleButton'); //TODO: add style in CSS with the image
+      BookButton.addEventListener("click", function(){BookPage(msg[ID]['BID']),false}); //TODO: implement function,
       divBookButton.appendChild(BookButton);
       divBookButton.classList.add("BookButton_MoreInfo");
       divContainer.appendChild(divBookButton);
@@ -286,25 +313,16 @@ form.addEventListener('submit', submitForm);
 
       var divReserveButton = document.createElement("div");
       var ReserveButton = document.createElement("button");
-      ReserveButton.innerHTML="Reserve for later"
-      ReserveButton.style.width="100%";
-      ReserveButton.style.height="100%";
-      divReserveButton.style.width="100%";
-      divReserveButton.style.height="100%";
-      ReserveButton.classList.add("ReserveButtonStyle"); //TODO: add style in CSS with the image
-      ReserveButton.addEventListener("click", function(){ReservePage()}); //TODO: implement function, maybe some blocks of the grid are hidden?
+      let ReserveButtonLabel = document.createElement('div');
+      ReserveButtonLabel.classList.add('MediumText','centered','SingleButtonContent');
+      ReserveButtonLabel.innerHTML="Reserve for later";
+      ReserveButton.appendChild(ReserveButtonLabel);
+      ReserveButton.classList.add("ReserveButtonStyle",'SingleButton'); //TODO: add style in CSS with the image
+      ReserveButton.addEventListener("click", function(){BookPage(msg[ID]['BID'],true)}); //TODO: implement function, maybe some blocks of the grid are hidden?
       divReserveButton.classList.add("ReserveButton_MoreInfo");
       divReserveButton.appendChild(ReserveButton);
       divContainer.appendChild(divReserveButton);
 
-          //attach back button
-          //var divButton=document.createElement("div");
-         // var backButton = document.createElement("button");
-         // backButton.classList.add("bookButtonStyle");
-          //backButton.innerHTML="Back"
-          //backButton.addEventListener("click",function(){backToMainTable()}); 
-          //divButton.appendChild(backButton);
-         // divContainer.appendChild(divButton);
             
 
           cellInfoTable.appendChild(divContainer);
@@ -313,9 +331,11 @@ form.addEventListener('submit', submitForm);
   }
   //function to come back to main table
   function backToMainTable(){
+    console.log("BACKMAINT");
       var MoreinfoTable= document.getElementById("InfoTable");
       InfoTableContainer.style.visibility='hidden';
       ResultTableContainer.style.visibility='visible';
+      backButton.addEventListener('click',BackToFirstScreen);
       for (var i = 0;i < MoreinfoTable.rows.length;i++){
           MoreinfoTable.deleteRow(i);
       }
@@ -329,7 +349,7 @@ form.addEventListener('submit', submitForm);
   function shareOutsideApp(){
 
   }
-  function BookPage() {
+  function BookPage(BID,reservation) {
     
     var bikeName=document.getElementById("BikeNameTEST");
     var bikeDescription=document.getElementById("BikeDescription");
@@ -338,8 +358,12 @@ form.addEventListener('submit', submitForm);
     var bikeImg=document.getElementById("BikePic")
     var form = document.createElement('form');
     //create a form
+    if (reservation == true){
+        form.setAttribute('action', '/reserve');
+    }
+    else{ form.setAttribute('action', '/book');}
     form.setAttribute('method', 'post');
-    form.setAttribute('action', '/book');
+
     //for each field, a input in the form is created
     //bikeName
     var inputName=document.createElement('input');
@@ -359,6 +383,12 @@ form.addEventListener('submit', submitForm);
     inputBikeAddress.setAttribute('name','bikeAddress');
     inputBikeAddress.setAttribute('value',bikeAddress.firstChild.textContent);
     form.appendChild(inputBikeAddress);
+    //BID
+    var inputBID=document.createElement('input');
+    inputBID.setAttribute("type", "text");
+    inputBID.setAttribute('name','BID');
+    inputBID.setAttribute('value',BID);
+    form.appendChild(inputBID);
     //bikePrice
     var inputBikePrice=document.createElement('input');
     inputBikePrice.setAttribute("type", "text");

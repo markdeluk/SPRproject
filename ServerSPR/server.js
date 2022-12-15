@@ -14,8 +14,8 @@ var mysql = require('mysql');
 //instantiate database connection
 var con = mysql.createConnection({
 host: "LAPTOP-7M6U6UFG",
-user: "marco",
-password: "marcolino2002",
+user: "client",
+password: "sprproject",
 database: "spr"
 });
 //create socket connection

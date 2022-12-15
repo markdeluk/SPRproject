@@ -250,7 +250,7 @@ form.addEventListener('submit', submitForm);
       var divShareButton = document.createElement("div");
       var ShareButton = document.createElement("button");
       let ShareButtonLabel = document.createElement('div');
-      ShareButtonLabel.innerHTML="Share"
+      ShareButtonLabel.innerHTML="Chat"
       ShareButtonLabel.classList.add('MediumText','centered','SingleButtonContent');
       ShareButton.appendChild(ShareButtonLabel);
       ShareButton.classList.add("ShareButtonStyle",'SingleButton'); //TODO: add style in CSS with the image
